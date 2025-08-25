@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiArrowLeft, FiGrid, FiUsers, FiRepeat } from 'react-icons/fi';
-import { SiWordpress, SiReact } from 'react-icons/si';
+import { SiReact } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 
 const WordPressGutenberg = () => {
@@ -14,8 +14,7 @@ const WordPressGutenberg = () => {
       </nav>
       <main className="flex-1 pt-24">
         <article className="max-w-4xl mx-auto py-12 px-6">
-          <div className="flex items-center gap-4 mb-4">
-            <SiWordpress className="text-blue-400 text-4xl" />
+          <div className="mb-4">
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-100">Mastering the Block: Modern WordPress with Gutenberg</h1>
           </div>
           <p className="text-gray-400 text-lg mb-8">June 15, 2024 &middot; 6 min read</p>
@@ -24,7 +23,6 @@ const WordPressGutenberg = () => {
               The introduction of the Gutenberg block editor in WordPress marked a pivotal shift from a simple content editor to a powerful page builder. For developers, this evolution opens up a new world of possibilities for creating dynamic, structured, and highly customizable user experiences. Mastering Gutenberg is no longer just an option; it's essential for modern WordPress development.
             </p>
             <div className="flex items-center gap-3 my-6">
-              <SiWordpress className="text-blue-400 text-3xl" title="WordPress" />
               <SiReact className="text-cyan-400 text-3xl" title="React" />
               <FiGrid className="text-pink-400 text-3xl" title="Blocks" />
             </div>

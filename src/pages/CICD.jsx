@@ -15,8 +15,9 @@ const CICD = () => {
       <main className="flex-1 pt-24">
         <article className="max-w-4xl mx-auto py-12 px-6">
           <div className="flex items-center gap-4 mb-4">
-            <FiGitBranch className="text-blue-400 text-4xl" />
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-100">The Power of the Pipeline: CI/CD for Modern Web Development</h1>
+            <div className="mb-4">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-100">The Power of the Pipeline: CI/CD for Modern Web Development</h1>
+            </div>
           </div>
           <p className="text-gray-400 text-lg mb-8">July 2, 2024 &middot; 5 min read</p>
           <div className="prose prose-invert lg:prose-xl max-w-none">

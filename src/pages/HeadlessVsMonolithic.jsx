@@ -14,8 +14,9 @@ const HeadlessVsMonolithic = () => {
       <main className="flex-1 pt-24">
         <article className="max-w-4xl mx-auto py-12 px-6">
           <div className="flex items-center gap-4 mb-4">
-            <FiServer className="text-cyan-400 text-4xl" />
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-100">Headless vs. Monolithic: Choosing the Right Tool for the Job</h1>
+            <div className="mb-4">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-100">Headless vs. Monolithic: Choosing the Right Tool for the Job</h1>
+            </div>
           </div>
           <p className="text-gray-400 text-lg mb-8">April 22, 2024 &middot; 7 min read</p>
           <div className="prose prose-invert lg:prose-xl max-w-none">
