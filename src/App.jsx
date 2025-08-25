@@ -372,7 +372,34 @@ const RecentWorkSection = () => (
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 className="text-4xl font-bold text-blue-50 text-center mb-12">Recent Work</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-      {/* Card 1 */}
+      {/* Card 1: California Closets */}
+      <div className="bg-[#23283a] p-8 rounded-xl shadow-lg flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-bold text-blue-100 mb-2">California Closets</h3>
+          <p className="text-blue-100 mb-4">Maintaining and adding features to the current national brand site. Ongoing performance, accessibility, and marketing improvements.</p>
+          <p className="text-sm font-medium text-blue-200 mb-4">Next.js, React, GraphQL, Algolia, Salesforce</p>
+        </div>
+        <a href="https://www.californiaclosets.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-500 hover:text-blue-600 transition-colors mt-auto">Visit Site &rarr;</a>
+      </div>
+      {/* Card 2: Health Coach Institute */}
+      <div className="bg-[#23283a] p-8 rounded-xl shadow-lg flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-bold text-blue-100 mb-2">Health Coach Institute</h3>
+          <p className="text-blue-100 mb-4">Led the team on a full site rebuild, modernizing the platform for a better student and marketing experience.</p>
+          <p className="text-sm font-medium text-blue-200 mb-4">WordPress, Gutenberg, React, Custom Integrations</p>
+        </div>
+        <a href="https://www.healthcoachinstitute.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-500 hover:text-blue-600 transition-colors mt-auto">Visit Site &rarr;</a>
+      </div>
+      {/* Card 3: FX Nutrition */}
+      <div className="bg-[#23283a] p-8 rounded-xl shadow-lg flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-bold text-blue-100 mb-2">FX Nutrition</h3>
+          <p className="text-blue-100 mb-4">Led the team on a full site rebuild, delivering a modern, scalable, and user-friendly experience for a growing nutrition brand.</p>
+          <p className="text-sm font-medium text-blue-200 mb-4">WordPress, Gutenberg, React, Custom Integrations</p>
+        </div>
+        <a href="https://fxnutrition.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-500 hover:text-blue-600 transition-colors mt-auto">Visit Site &rarr;</a>
+      </div>
+      {/* Card 4: Zulutions Global */}
       <div className="bg-[#23283a] p-8 rounded-xl shadow-lg flex flex-col">
         <div className="flex-grow">
           <h3 className="text-2xl font-bold text-blue-100 mb-2">Zulutions Global</h3>
@@ -381,7 +408,7 @@ const RecentWorkSection = () => (
         </div>
         <a href="https://zulutionsglobal.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-500 hover:text-blue-600 transition-colors mt-auto">Visit Site &rarr;</a>
       </div>
-      {/* Card 2 */}
+      {/* Card 5: Sculpting Time */}
       <div className="bg-[#23283a] p-8 rounded-xl shadow-lg flex flex-col">
         <div className="flex-grow">
           <h3 className="text-2xl font-bold text-blue-100 mb-2">Sculpting Time</h3>
@@ -390,7 +417,7 @@ const RecentWorkSection = () => (
         </div>
         <a href="https://sculpting-time.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-500 hover:text-blue-600 transition-colors mt-auto">Visit Site &rarr;</a>
       </div>
-      {/* Card 3 (Corrected Structure) */}
+      {/* Card 6: SuburbanCM */}
       <div className="bg-[#23283a] p-8 rounded-xl shadow-lg flex flex-col">
         <div className="flex-grow">
           <h3 className="text-2xl font-bold text-blue-100 mb-2">SuburbanCM</h3>
