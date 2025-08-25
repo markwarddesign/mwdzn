@@ -7,7 +7,10 @@ const FadeInSection = ({ children, alternate, id }) => {
     threshold: 0.1,
   });
 
-  const backgroundClass = alternate ? 'bg-gray-50' : 'bg-white';
+  // Alternate between two dark backgrounds
+  const backgroundClass = alternate
+    ? 'bg-[#23283a] text-white'
+    : 'bg-[#181c24] text-white';
 
   return (
     <section
@@ -17,7 +20,9 @@ const FadeInSection = ({ children, alternate, id }) => {
         inView ? 'opacity-100' : 'opacity-0'
       } ${backgroundClass}`}
     >
-      {children}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {children}
+      </div>
     </section>
   );
 };

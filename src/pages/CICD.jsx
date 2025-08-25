@@ -1,46 +1,76 @@
 import React from 'react';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiGitBranch, FiZap, FiCheckCircle } from 'react-icons/fi';
+import { SiGithubactions, SiVercel, SiWpengine } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 
 const CICD = () => {
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans">
-      <nav className="w-full px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-sm shadow-md border-b border-gray-200 fixed top-0 left-0 z-50">
-        <Link to="/" className="flex items-center space-x-3 text-gray-600 hover:text-blue-500 font-medium transition-colors text-base">
+    <div className="min-h-screen bg-gray-950 text-gray-100 font-sans">
+      <nav className="w-full px-6 py-4 flex justify-between items-center bg-gray-900/80 backdrop-blur-sm shadow-md border-b border-gray-800 fixed top-0 left-0 z-50">
+        <Link to="/" className="flex items-center space-x-3 text-gray-400 hover:text-blue-400 font-medium transition-colors text-base">
           <FiArrowLeft />
           <span>Back to Home</span>
         </Link>
       </nav>
       <main className="flex-1 pt-24">
         <article className="max-w-4xl mx-auto py-12 px-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">The Power of the Pipeline: CI/CD for Modern Web Development</h1>
-          <p className="text-gray-500 text-lg mb-8">July 2, 2024 &middot; 5 min read</p>
-          <div className="prose lg:prose-xl max-w-none">
+          <div className="flex items-center gap-4 mb-4">
+            <FiGitBranch className="text-blue-400 text-4xl" />
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-100">The Power of the Pipeline: CI/CD for Modern Web Development</h1>
+          </div>
+          <p className="text-gray-400 text-lg mb-8">July 2, 2024 &middot; 5 min read</p>
+          <div className="prose prose-invert lg:prose-xl max-w-none">
             <p>
               In today's fast-paced development landscape, speed and reliability are paramount. A well-structured Continuous Integration and Continuous Deployment (CI/CD) pipeline is the bedrock of modern web development, enabling teams to ship better products, faster. It's about more than just automation; it's a cultural shift that emphasizes collaboration, quality, and efficiency.
             </p>
-            <h2 className="text-2xl font-bold mt-8 mb-4">What is CI/CD?</h2>
+            <div className="flex items-center gap-3 my-6">
+              <SiGithubactions className="text-purple-400 text-3xl" title="GitHub Actions" />
+              <FiZap className="text-yellow-400 text-3xl" title="Automation" />
+              <SiVercel className="text-white text-3xl" title="Vercel" />
+              <SiWpengine className="text-blue-500 text-3xl" title="WP Engine" />
+            </div>
+            <h2 className="text-2xl font-bold mt-8 mb-4 flex items-center gap-2"><FiZap className="text-yellow-400" /> What is CI/CD?</h2>
             <p>
-              Continuous Integration (CI) is the practice of frequently merging code changes from multiple developers into a central repository. Each integration is then automatically verified by a build and a series of automated tests. This process helps to detect integration issues early, preventing them from becoming larger problems down the line.
+              <span className="font-bold text-blue-300">Continuous Integration (CI)</span> is the practice of frequently merging code changes from multiple developers into a central repository. Each integration is then automatically verified by a build and a series of automated tests. This process helps to detect integration issues early, preventing them from becoming larger problems down the line.
             </p>
+            <pre className="bg-gray-900 rounded-lg p-4 text-sm overflow-x-auto my-4"><code className="language-yaml"># Example GitHub Actions workflow for CI
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+</code></pre>
             <p>
-              Continuous Deployment (CD) takes this a step further by automatically deploying every change that passes the CI stage to a production environment. This ensures that new features and bug fixes are released to users as quickly as possible, creating a rapid feedback loop.
+              <span className="font-bold text-green-400">Continuous Deployment (CD)</span> takes this a step further by automatically deploying every change that passes the CI stage to a production environment. This ensures that new features and bug fixes are released to users as quickly as possible, creating a rapid feedback loop.
             </p>
-            <h2 className="text-2xl font-bold mt-8 mb-4">The Benefits of a Robust Pipeline</h2>
+            <pre className="bg-gray-900 rounded-lg p-4 text-sm overflow-x-auto my-4"><code className="language-yaml"># Example deployment step
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Vercel
+        run: npx vercel --prod
+</code></pre>
+            <h2 className="text-2xl font-bold mt-8 mb-4 flex items-center gap-2"><FiCheckCircle className="text-green-400" /> The Benefits of a Robust Pipeline</h2>
+            <ul>
+              <li>Reduces manual effort and human error</li>
+              <li>Improves code quality with automated testing</li>
+              <li>Accelerates delivery of value to users</li>
+              <li>Frees up developers to focus on features</li>
+            </ul>
             <p>
-              Implementing a CI/CD pipeline offers numerous benefits. It reduces manual effort and the risk of human error, freeing up developers to focus on what they do best: building great features. It also improves code quality by enforcing automated testing and code standards. Most importantly, it accelerates the delivery of value to your users, giving you a competitive edge.
-            </p>
-            <p>
-              At Third & Grove, our CI/CD pipelines, often powered by GitHub Actions, are the backbone of our projects. They handle everything from linting and testing to building and deploying our applications to platforms like Vercel and WP Engine, ensuring a smooth and reliable development process.
+              At Third & Grove, our CI/CD pipelines, often powered by <span className="font-bold text-purple-300">GitHub Actions</span>, are the backbone of our projects. They handle everything from linting and testing to building and deploying our applications to platforms like <span className="font-bold text-white">Vercel</span> and <span className="font-bold text-blue-400">WP Engine</span>, ensuring a smooth and reliable development process.
             </p>
           </div>
         </article>
       </main>
-      <footer className="bg-gray-50 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-500">&copy; {new Date().getFullYear()} Mark Ward. All Rights Reserved.</p>
-        </div>
-      </footer>
+
     </div>
   );
 };
