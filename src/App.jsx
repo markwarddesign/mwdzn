@@ -37,6 +37,15 @@ const AppContent = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Handle GitHub Pages redirect workaround
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+    if (redirect) {
+      navigate('/' + redirect, { replace: true });
+    }
+  }, [navigate]);
+
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setIsMenuOpen(false);
@@ -424,7 +433,7 @@ const ThoughtsSection = () => (
       {/* Post 1: Headless WordPress at Scale */}
       <div className="p-8 bg-[#23283a] rounded-xl shadow-lg flex flex-col gap-4">
         <div className="flex items-center gap-3 mb-2">
-          <img src="/src/assets/react.svg" alt="React" className="w-8 h-8" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/WordPress_blue_logo.svg" alt="WordPress" className="w-8 h-8" />
           <span className="text-blue-200 text-xs">Architecture</span>
         </div>
         <h3 className="text-2xl font-bold text-blue-100 mb-2">Headless WordPress at Scale with WP Engine, Faust.js, and Atlas</h3>
