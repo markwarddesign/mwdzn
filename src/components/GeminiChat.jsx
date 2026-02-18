@@ -20,11 +20,13 @@ const GeminiChat = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [showSuggested, setShowSuggested] = useState(true);
-  const bottomRef = useRef(null);
+  const messagesRef = useRef(null);
   const inputRef = useRef(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messagesRef.current) {
+      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+    }
   }, [displayMessages]);
 
   const send = async (text) => {
@@ -106,7 +108,7 @@ const GeminiChat = () => {
       </div>
 
       {/* Messages */}
-      <div className="h-64 overflow-y-auto p-5 flex flex-col gap-3">
+      <div ref={messagesRef} className="h-64 overflow-y-auto p-5 flex flex-col gap-3">
         {displayMessages.map((msg, i) => (
           <div key={i} className={`flex items-end gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             {msg.role === 'model' && (
@@ -131,7 +133,6 @@ const GeminiChat = () => {
             )}
           </div>
         ))}
-        <div ref={bottomRef} />
       </div>
 
       {/* Suggested chips */}
