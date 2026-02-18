@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { FiSend, FiZap, FiUser, FiCpu } from 'react-icons/fi';
 import { buildSystemPrompt } from '../assistantConfig';
 
@@ -37,9 +36,9 @@ const GeminiChat = () => {
     setLoading(true);
     setDisplayMessages(prev => [...prev, { role: 'model', text: '' }]);
 
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    const workerUrl = import.meta.env.VITE_GEMINI_WORKER_URL;
 
-    if (!apiKey) {
+    if (!workerUrl) {
       setDisplayMessages(prev => {
         const updated = [...prev];
         updated[updated.length - 1] = {
@@ -53,23 +52,49 @@ const GeminiChat = () => {
     }
 
     try {
-      const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({
-        model: 'gemini-2.0-flash',
-        systemInstruction: SYSTEM_PROMPT,
+      const response = await fetch(workerUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents: [
+            ...apiHistory,
+            { role: 'user', parts: [{ text }] },
+          ],
+        }),
       });
 
-      const chat = model.startChat({ history: apiHistory });
-      const result = await chat.sendMessageStream(text);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
 
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
       let fullResponse = '';
-      for await (const chunk of result.stream) {
-        fullResponse += chunk.text();
-        setDisplayMessages(prev => {
-          const updated = [...prev];
-          updated[updated.length - 1] = { role: 'model', text: fullResponse };
-          return updated;
-        });
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop();
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const data = line.slice(6).trim();
+          if (!data || data === '[DONE]') continue;
+          try {
+            const parsed = JSON.parse(data);
+            const chunk = parsed.candidates?.[0]?.content?.parts?.[0]?.text || '';
+            fullResponse += chunk;
+            setDisplayMessages(prev => {
+              const updated = [...prev];
+              updated[updated.length - 1] = { role: 'model', text: fullResponse };
+              return updated;
+            });
+          } catch (_) {}
+        }
       }
 
       setApiHistory(prev => [
@@ -81,8 +106,8 @@ const GeminiChat = () => {
       const msg = err?.message || '';
       const friendlyText = msg.includes('429')
         ? "I'm getting rate-limited by the API right now — please try again in a moment."
-        : msg.includes('API_KEY_INVALID') || msg.includes('400')
-        ? "There's a configuration issue with the API key. Please check the setup."
+        : msg.includes('400')
+        ? "There's a configuration issue with the API. Please check the setup."
         : 'Something went wrong. Please try again.';
       setDisplayMessages(prev => {
         const updated = [...prev];
