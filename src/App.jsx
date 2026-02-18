@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiMenu, FiX, FiGithub, FiLinkedin, FiMail, FiArrowRight } from 'react-icons/fi';
+import { FiMenu, FiX, FiGithub, FiLinkedin, FiMail, FiArrowRight, FiLayers, FiCheckCircle, FiGlobe, FiShield, FiZap, FiCloud, FiActivity, FiRefreshCw, FiAward, FiLock } from 'react-icons/fi';
 import { FaUsers, FaMicrochip, FaChartBar, FaBolt, FaCodeBranch, FaFileAlt, FaCode, FaServer, FaTools, FaReact } from 'react-icons/fa';
 import DesignSystem from './pages/DesignSystem';
 import HeadlessVsMonolithic from './pages/HeadlessVsMonolithic';
@@ -21,7 +21,6 @@ import GeminiChat from './components/GeminiChat';
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Case Studies', href: '#case-studies' },
-  { name: 'Recent Work', href: '#recent-work' },
   { name: 'Skills', href: '#skills' },
   { name: 'Thoughts', href: '#thoughts' },
   { name: 'Contact', href: '#contact' },
@@ -262,9 +261,6 @@ const Home = () => (
     <FadeInSection id="case-studies" alternate={true}>
       <CaseStudiesSection />
     </FadeInSection>
-    <FadeInSection id="recent-work" alternate={false}>
-      <RecentWorkSection />
-    </FadeInSection>
     <FadeInSection id="skills" alternate={true}>
       <SkillsSection />
     </FadeInSection>
@@ -407,259 +403,173 @@ const AboutSection = () => (
 const CaseStudiesSection = () => (
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 className="text-4xl font-bold text-blue-50 text-center mb-12">Case Studies</h2>
-    <div>
-      {/* First Case Study */}
-      <div className="case-study bg-[#1e2230] rounded-xl shadow-lg overflow-hidden p-8 md:p-12 border border-blue-900 mb-16">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="case-study-content">
-            <h3 className="text-3xl font-bold text-blue-100 mb-2">California Closets</h3>
-            <h4 className="text-xl font-semibold text-blue-50 mb-4">Architecting a Headless Future for a Leading National Brand</h4>
-            <p className="text-blue-100 mb-6">
-              At Third & Grove, I led a team of up to 7 engineers in the complete headless rebuild of the California Closets web presence, working within an Agile environment to enhance performance, accessibility, and marketing agility.
-            </p>
-            <div className="space-y-4 mb-6">
-              <a href="https://www.californiaclosets.com" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-blue-400 hover:text-blue-600 transition-colors mr-4">Visit Live Site &rarr;</a>
-              <Link to="/case-studies/california-closets" className="inline-block font-semibold text-blue-400 hover:text-blue-600 transition-colors">Read Case Study &rarr;</Link>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3"><FaUsers className="text-blue-400 mt-1 flex-shrink-0" size={20} /><div><strong className="text-white">My Role:</strong> Technical Architect & Dev Lead</div></div>
-              <div className="flex items-start space-x-3"><FaMicrochip className="text-blue-400 mt-1 flex-shrink-0" size={20} /><div><strong className="text-white">Key Tech:</strong> Next.js, React, GraphQL, Algolia, Salesforce</div></div>
-              <div className="flex items-start space-x-3"><FaChartBar className="text-blue-400 mt-1 flex-shrink-0" size={20} /><div><strong className="text-white">Impact:</strong> Established CI/CD workflows, improved site speed, and ensured ADA compliance.</div></div>
-              <div className="flex items-start space-x-3"><FaBolt className="text-blue-400 mt-1 flex-shrink-0" size={20} /><div><strong className="text-white">Outcome:</strong> Successfully launched September 2025. Ongoing optimization for Core Web Vitals.</div></div>
-            </div>
-          </div>
-          <div className="case-study-visual">
-            <h4 className="text-lg font-semibold text-blue-100 mb-3 text-center">Simplified System Architecture</h4>
-            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-              <svg width="100%" viewBox="0 0 400 220" className="font-sans text-xs">
-                <defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker></defs>
-                <g><rect x="130" y="10" width="140" height="40" rx="5" fill="#ffffff" stroke="#e5e7eb" /><text x="200" y="35" fill="#1f2937" textAnchor="middle">Next.js / React</text></g>
-                <g><rect x="150" y="90" width="100" height="40" rx="5" fill="#ffffff" stroke="#e5e7eb" /><text x="200" y="115" fill="#1f2937" textAnchor="middle">GraphQL API</text></g>
-                <g><rect x="10" y="170" width="120" height="40" rx="5" fill="#ffffff" stroke="#e5e7eb" /><text x="70" y="195" fill="#1f2937" textAnchor="middle">Headless WordPress</text></g>
-                <g><rect x="140" y="170" width="120" height="40" rx="5" fill="#ffffff" stroke="#e5e7eb" /><text x="200" y="195" fill="#1f2937" textAnchor="middle">Algolia Search</text></g>
-                <g><rect x="270" y="170" width="120" height="40" rx="5" fill="#ffffff" stroke="#e5e7eb" /><text x="330" y="195" fill="#1f2937" textAnchor="middle">Salesforce / Mulesoft</text></g>
-                <path d="M 200 50 V 90" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrow)" />
-                <path d="M 200 130 V 150 H 70 V 170" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrow)" strokeLinejoin="round" fill="none" />
-                <path d="M 200 130 V 170" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrow)" />
-                <path d="M 200 130 V 150 H 330 V 170" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrow)" strokeLinejoin="round" fill="none" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Second Case Study */}
-      <div className="case-study bg-[#1e2230] rounded-xl shadow-lg overflow-hidden p-8 md:p-12 border border-blue-900">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="case-study-visual">
-            <h4 className="text-lg font-semibold text-blue-100 mb-3 text-center">Product & Technical Roadmap</h4>
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-              <div className="relative">
-                <div className="absolute left-4 top-1 h-full w-0.5 bg-blue-500"></div>
-                <div className="relative pl-10 pb-8"><div className="absolute left-4 top-1 w-4 h-4 bg-[#23283a] border-2 border-blue-500 rounded-full transform -translate-x-1/2"></div><h5 className="font-bold text-gray-900">Phase 1: MVP (Currently in Beta Testing)</h5><p className="text-sm text-gray-700">Built with Laravel & Bootstrap for rapid development and a solid, responsive foundation.</p></div>
-                <div className="relative pl-10 pb-8"><div className="absolute left-4 top-1 w-4 h-4 bg-[#23283a] border-2 border-blue-500 rounded-full transform -translate-x-1/2"></div><h5 className="font-bold text-gray-900">Phase 2: User Engagement</h5><p className="text-sm text-gray-700">Integrating real-time SMS notifications for key events using Twilio.</p></div>
-                <div className="relative pl-10 pb-8"><div className="absolute left-4 top-1 w-4 h-4 bg-[#23283a] border-2 border-blue-500 rounded-full transform -translate-x-1/2"></div><h5 className="font-bold text-gray-900">Phase 3: Web App Evolution</h5><p className="text-sm text-gray-700">Migrate front-end to React for a more dynamic, component-based user experience.</p></div>
-                <div className="relative pl-10"><div className="absolute left-4 top-1 w-4 h-4 bg-[#23283a] border-2 border-blue-500 rounded-full transform -translate-x-1/2"></div><h5 className="font-bold text-gray-900">Phase 4: Native Mobile</h5><p className="text-sm text-gray-700">Develop native iOS & Android apps using React Native, sharing logic with the web platform.</p></div>
-              </div>
-            </div>
-          </div>
-          <div className="case-study-content">
-            <h3 className="text-3xl font-bold text-blue-100 mb-2">CropAide</h3>
-            <h4 className="text-xl font-semibold text-blue-50 mb-4">Building a Data-Driven SaaS Platform for Agriculture</h4>
-            <p className="text-blue-100 mb-6">A passion project built from scratch to help growers make better decisions. I established a full CI/CD pipeline for automated testing and deployment. Currently in active Beta Testing.</p>
-            <div className="space-y-4 mb-6">
-              <a href="https://cropaide.com/" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-blue-400 hover:text-blue-600 transition-colors mr-4">Visit Live Site &rarr;</a>
-              <Link to="/case-studies/cropaide" className="inline-block font-semibold text-blue-400 hover:text-blue-600 transition-colors">Read Case Study &rarr;</Link>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3"><FaCodeBranch className="text-blue-500 mt-1 flex-shrink-0" size={20} /><div><strong className="text-blue-50">My Role:</strong> Founder, Architect, & Full-Stack Developer</div></div>
-              <div className="flex items-start space-x-3"><FaMicrochip className="text-blue-500 mt-1 flex-shrink-0" size={20} /><div><strong className="text-blue-50">Key Tech:</strong> Laravel, PHP, Bootstrap, Stripe, Cloudflare, Twilio</div></div>
-              <div className="flex items-start space-x-3"><FaFileAlt className="text-blue-500 mt-1 flex-shrink-0" size={20} /><div><strong className="text-blue-50">Highlights:</strong> CI/CD pipeline, Stripe subscription billing, custom reporting, data import tools, and a clear growth roadmap.</div></div>
-              <div className="flex items-start space-x-3"><FaBolt className="text-blue-500 mt-1 flex-shrink-0" size={20} /><div><strong className="text-blue-50">Status:</strong> Active Beta Testing with real-world users.</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Third Case Study - Dealer Transparency MILES */}
-      <div className="case-study bg-[#1e2230] rounded-xl shadow-lg overflow-hidden p-8 md:p-12 border border-blue-900 mt-16">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="case-study-content">
-            <h3 className="text-3xl font-bold text-blue-100 mb-2">Dealer Transparency MILES</h3>
-            <h4 className="text-xl font-semibold text-blue-50 mb-4">Real-Time Vehicle Tracking & Automation Platform</h4>
-            <p className="text-blue-100 mb-6">A comprehensive SaaS solution providing dealers with real-time vehicle tracking, automated reporting, and seamless third-party integrations for complete inventory visibility.</p>
-            <div className="space-y-4 mb-6">
-              <a href="https://miles.dealertransparency.com/" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-blue-400 hover:text-blue-600 transition-colors mr-4">Visit Live Platform &rarr;</a>
-              <Link to="/case-studies/miles" className="inline-block font-semibold text-blue-400 hover:text-blue-600 transition-colors">Read Case Study &rarr;</Link>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3"><FaCodeBranch className="text-blue-500 mt-1 flex-shrink-0" size={20} /><div><strong className="text-blue-50">My Role:</strong> Lead Developer & Technical Architect</div></div>
-              <div className="flex items-start space-x-3"><FaMicrochip className="text-blue-500 mt-1 flex-shrink-0" size={20} /><div><strong className="text-blue-50">Key Tech:</strong> Laravel, React, Zustand, WebSocket Integration, Third-Party API Automations</div></div>
-              <div className="flex items-start space-x-3"><FaBolt className="text-blue-500 mt-1 flex-shrink-0" size={20} /><div><strong className="text-blue-50">Highlights:</strong> Real-time data synchronization, automated workflows, and enterprise-grade scalability.</div></div>
-            </div>
-          </div>
-          <div className="case-study-visual">
-            <h4 className="text-lg font-semibold text-blue-100 mb-3 text-center">Platform Features</h4>
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-              <div className="space-y-4 text-gray-900">
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm">1</span>
-                  </div>
-                  <div>
-                    <h5 className="font-bold">Real-Time Vehicle Tracking</h5>
-                    <p className="text-sm text-gray-700">Live location updates via WebSocket connections</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm">2</span>
-                  </div>
-                  <div>
-                    <h5 className="font-bold">Automated API Integrations</h5>
-                    <p className="text-sm text-gray-700">Seamless third-party data synchronization</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm">3</span>
-                  </div>
-                  <div>
-                    <h5 className="font-bold">State Management</h5>
-                    <p className="text-sm text-gray-700">Zustand for efficient, predictable data flow</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm">4</span>
-                  </div>
-                  <div>
-                    <h5 className="font-bold">Enterprise Scalability</h5>
-                    <p className="text-sm text-gray-700">Built to handle high-volume dealer operations</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const RecentWorkSection = () => (
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-4xl font-bold text-blue-50 text-center mb-3">Engineering Highlights</h2>
-    <p className="text-blue-300 text-center mb-12 max-w-2xl mx-auto">A snapshot of the most technically demanding work — focused on architecture, scale, and team impact.</p>
-
-    {/* Impact Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+    <div className="space-y-10">
 
       {/* California Closets */}
-      <div className="bg-[#1e2230] border border-blue-900/50 rounded-2xl p-6 flex flex-col shadow-lg">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-400 bg-blue-900/30 px-3 py-1 rounded-full">Enterprise</span>
-          <span className="text-xs text-gray-500">Shipped Sept 2025</span>
+      <div className="bg-[#1e2230] rounded-xl shadow-lg overflow-hidden p-8 md:p-12 border border-blue-900">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-400 bg-blue-900/30 px-3 py-1 rounded-full">Enterprise</span>
+              <span className="text-xs text-gray-500">Shipped Sept 2025</span>
+            </div>
+            <h3 className="text-3xl font-bold text-blue-100 mb-2">California Closets</h3>
+            <h4 className="text-xl font-semibold text-blue-50 mb-4">Architecting a Headless Future for a Leading National Brand</h4>
+            <p className="text-blue-100 mb-6">At Third &amp; Grove, I led a team of up to 7 engineers in the complete headless rebuild of the California Closets web presence, working within an Agile environment to enhance performance, accessibility, and marketing agility.</p>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-start space-x-3"><FaUsers className="text-blue-400 mt-1 flex-shrink-0" size={18} /><div><strong className="text-white">My Role:</strong> Technical Architect &amp; Dev Lead</div></div>
+              <div className="flex items-start space-x-3"><FaMicrochip className="text-blue-400 mt-1 flex-shrink-0" size={18} /><div><strong className="text-white">Key Tech:</strong> Next.js, React, GraphQL, Algolia, Salesforce</div></div>
+              <div className="flex items-start space-x-3"><FaChartBar className="text-blue-400 mt-1 flex-shrink-0" size={18} /><div><strong className="text-white">Impact:</strong> Established CI/CD workflows, improved site speed, and ensured ADA compliance.</div></div>
+              <div className="flex items-start space-x-3"><FaBolt className="text-blue-400 mt-1 flex-shrink-0" size={18} /><div><strong className="text-white">Outcome:</strong> Successfully launched September 2025. Ongoing optimization for Core Web Vitals.</div></div>
+            </div>
+            <div>
+              <a href="https://www.californiaclosets.com" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors mr-4">Visit Live Site &rarr;</a>
+              <Link to="/case-studies/california-closets" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors">Read Case Study &rarr;</Link>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-[#23283a] to-[#1a1f2e] border border-blue-800/40 rounded-2xl p-6">
+            <p className="text-xs font-bold uppercase tracking-widest text-blue-500/70 mb-4">At a Glance</p>
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              <div className="bg-[#181c24] border-t-2 border-blue-500 rounded-xl p-4 text-center">
+                <FaUsers className="mx-auto text-blue-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">7</p>
+                <p className="text-xs text-gray-400 mt-1">Engineers led</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-blue-500 rounded-xl p-4 text-center">
+                <FiLayers className="mx-auto text-blue-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">200+</p>
+                <p className="text-xs text-gray-400 mt-1">Components</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-blue-500 rounded-xl p-4 text-center">
+                <FiCheckCircle className="mx-auto text-blue-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">ADA</p>
+                <p className="text-xs text-gray-400 mt-1">WCAG compliant</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-blue-500 rounded-xl p-4 text-center">
+                <FiGlobe className="mx-auto text-blue-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">i18n</p>
+                <p className="text-xs text-gray-400 mt-1">Multi-locale</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {['Next.js', 'React', 'TypeScript', 'GraphQL', 'Algolia', 'Salesforce', 'Storybook'].map(t => (
+                <span key={t} className="text-xs bg-[#181c24] text-blue-300 border border-blue-800/50 rounded-full px-2.5 py-1">{t}</span>
+              ))}
+            </div>
+          </div>
         </div>
-        <h3 className="text-xl font-extrabold text-white mb-1">California Closets</h3>
-        <p className="text-sm text-blue-300 font-medium mb-4">Technical Architect &amp; Dev Lead</p>
-        <p className="text-blue-100 text-sm mb-5 flex-grow">Led a 3-engineer team on a complete headless rebuild of a national brand. Architected the full component system, CI/CD pipeline, and Algolia search integration.</p>
-        <div className="grid grid-cols-2 gap-3 mb-5">
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">3</p>
-            <p className="text-xs text-gray-400">Engineers led</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">200+</p>
-            <p className="text-xs text-gray-400">Storybook components</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">ADA</p>
-            <p className="text-xs text-gray-400">WCAG compliant</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">✓</p>
-            <p className="text-xs text-gray-400">Full CI/CD pipeline</p>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {['Next.js', 'React', 'GraphQL', 'Algolia', 'Salesforce'].map(t => (
-            <span key={t} className="text-xs bg-[#23283a] text-blue-300 border border-blue-900/40 rounded-full px-2.5 py-1">{t}</span>
-          ))}
-        </div>
-        <Link to="/case-studies/california-closets" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors mt-auto">View Case Study &rarr;</Link>
       </div>
 
       {/* CropAide */}
-      <div className="bg-[#1e2230] border border-blue-900/50 rounded-2xl p-6 flex flex-col shadow-lg">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-green-400 bg-green-900/20 px-3 py-1 rounded-full">SaaS · Founder</span>
-          <span className="text-xs text-gray-500">Public Beta</span>
+      <div className="bg-[#1e2230] rounded-xl shadow-lg overflow-hidden p-8 md:p-12 border border-blue-900">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-green-400 bg-green-900/20 px-3 py-1 rounded-full">SaaS · Co-Founder</span>
+              <span className="text-xs text-gray-500">Public Beta</span>
+            </div>
+            <h3 className="text-3xl font-bold text-blue-100 mb-2">CropAide</h3>
+            <h4 className="text-xl font-semibold text-blue-50 mb-4">Building a Data-Driven SaaS Platform for Agriculture</h4>
+            <p className="text-blue-100 mb-6">Co-founded and architected a multi-tenant agricultural SaaS from zero to production. Designed a row-level Policy auth system, decoupled media via Cloudflare R2, and integrated Stripe subscription billing.</p>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-start space-x-3"><FaCodeBranch className="text-blue-500 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">My Role:</strong> Co-Founder, Lead Architect &amp; Full-Stack Engineer</div></div>
+              <div className="flex items-start space-x-3"><FaMicrochip className="text-blue-500 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">Key Tech:</strong> Laravel 11, PHP 8.2, MySQL, Cloudflare, Stripe</div></div>
+              <div className="flex items-start space-x-3"><FaFileAlt className="text-blue-500 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">Highlights:</strong> CI/CD pipeline, Stripe billing, custom reporting, data import tools.</div></div>
+              <div className="flex items-start space-x-3"><FaBolt className="text-blue-500 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">Status:</strong> Active Beta Testing with real-world users.</div></div>
+            </div>
+            <div>
+              <a href="https://cropaide.com/" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors mr-4">Visit Live Site &rarr;</a>
+              <Link to="/case-studies/cropaide" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors">Read Case Study &rarr;</Link>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-[#1a2420] to-[#1a1f2e] border border-green-800/40 rounded-2xl p-6">
+            <p className="text-xs font-bold uppercase tracking-widest text-green-500/70 mb-4">At a Glance</p>
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              <div className="bg-[#181c24] border-t-2 border-green-500 rounded-xl p-4 text-center">
+                <FiLock className="mx-auto text-green-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">3</p>
+                <p className="text-xs text-gray-400 mt-1">Permission tiers</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-green-500 rounded-xl p-4 text-center">
+                <FiShield className="mx-auto text-green-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">100%</p>
+                <p className="text-xs text-gray-400 mt-1">Tenant isolation</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-green-500 rounded-xl p-4 text-center">
+                <FiZap className="mx-auto text-green-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">0→1</p>
+                <p className="text-xs text-gray-400 mt-1">Architecture &amp; build</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-green-500 rounded-xl p-4 text-center">
+                <FiCloud className="mx-auto text-green-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">∞</p>
+                <p className="text-xs text-gray-400 mt-1">Media scalability</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {['Laravel 11', 'PHP 8.2', 'MySQL', 'Cloudflare R2', 'Stripe', 'GitHub Actions'].map(t => (
+                <span key={t} className="text-xs bg-[#181c24] text-green-300 border border-green-800/50 rounded-full px-2.5 py-1">{t}</span>
+              ))}
+            </div>
+          </div>
         </div>
-        <h3 className="text-xl font-extrabold text-white mb-1">CropAide</h3>
-        <p className="text-sm text-blue-300 font-medium mb-4">Lead Architect &amp; Full Stack Engineer</p>
-        <p className="text-blue-100 text-sm mb-5 flex-grow">Co-founded and architected a multi-tenant agricultural SaaS from zero to production. Designed a row-level Policy auth system, decoupled media via Cloudflare, and integrated Stripe subscription billing.</p>
-        <div className="grid grid-cols-2 gap-3 mb-5">
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">3</p>
-            <p className="text-xs text-gray-400">User permission tiers</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">100%</p>
-            <p className="text-xs text-gray-400">Tenant isolation</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">0→1</p>
-            <p className="text-xs text-gray-400">Architecture &amp; build</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">∞</p>
-            <p className="text-xs text-gray-400">Media scalability</p>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {['Laravel 11', 'PHP 8.2', 'MySQL', 'Cloudflare', 'Stripe'].map(t => (
-            <span key={t} className="text-xs bg-[#23283a] text-blue-300 border border-blue-900/40 rounded-full px-2.5 py-1">{t}</span>
-          ))}
-        </div>
-        <Link to="/case-studies/cropaide" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors mt-auto">View Case Study &rarr;</Link>
       </div>
 
       {/* Dealer Transparency MILES */}
-      <div className="bg-[#1e2230] border border-blue-900/50 rounded-2xl p-6 flex flex-col shadow-lg">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-purple-400 bg-purple-900/20 px-3 py-1 rounded-full">SaaS · Real-Time</span>
-          <span className="text-xs text-gray-500">Production</span>
+      <div className="bg-[#1e2230] rounded-xl shadow-lg overflow-hidden p-8 md:p-12 border border-blue-900">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-purple-400 bg-purple-900/20 px-3 py-1 rounded-full">SaaS · Real-Time</span>
+              <span className="text-xs text-gray-500">Production</span>
+            </div>
+            <h3 className="text-3xl font-bold text-blue-100 mb-2">Dealer Transparency MILES</h3>
+            <h4 className="text-xl font-semibold text-blue-50 mb-4">Real-Time Vehicle Tracking &amp; Automation Platform</h4>
+            <p className="text-blue-100 mb-6">Co-founded and led the architecture of a comprehensive SaaS platform providing dealers with real-time vehicle tracking, automated reporting, and seamless third-party integrations for complete inventory visibility.</p>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-start space-x-3"><FaCodeBranch className="text-blue-500 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">My Role:</strong> Co-Founder, Lead Developer &amp; Technical Architect</div></div>
+              <div className="flex items-start space-x-3"><FaMicrochip className="text-blue-500 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">Key Tech:</strong> Laravel, React, Zustand, WebSockets, MySQL</div></div>
+              <div className="flex items-start space-x-3"><FaBolt className="text-blue-500 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">Highlights:</strong> Real-time data sync, automated workflows, enterprise-grade multi-dealer tenancy.</div></div>
+            </div>
+            <div>
+              <a href="https://miles.dealertransparency.com/" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors mr-4">Visit Live Platform &rarr;</a>
+              <Link to="/case-studies/miles" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors">Read Case Study &rarr;</Link>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-[#1e1a2e] to-[#1a1f2e] border border-purple-800/40 rounded-2xl p-6">
+            <p className="text-xs font-bold uppercase tracking-widest text-purple-500/70 mb-4">At a Glance</p>
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              <div className="bg-[#181c24] border-t-2 border-purple-500 rounded-xl p-4 text-center">
+                <FiActivity className="mx-auto text-purple-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">WS</p>
+                <p className="text-xs text-gray-400 mt-1">Real-time sync</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-purple-500 rounded-xl p-4 text-center">
+                <FiRefreshCw className="mx-auto text-purple-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">API</p>
+                <p className="text-xs text-gray-400 mt-1">Auto integrations</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-purple-500 rounded-xl p-4 text-center">
+                <FiAward className="mx-auto text-purple-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">✓</p>
+                <p className="text-xs text-gray-400 mt-1">Enterprise scale</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-purple-500 rounded-xl p-4 text-center">
+                <FaUsers className="mx-auto text-purple-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">✓</p>
+                <p className="text-xs text-gray-400 mt-1">Multi-dealer tenancy</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {['Laravel', 'React', 'Zustand', 'WebSockets', 'MySQL', 'Laravel Reverb'].map(t => (
+                <span key={t} className="text-xs bg-[#181c24] text-purple-300 border border-purple-800/50 rounded-full px-2.5 py-1">{t}</span>
+              ))}
+            </div>
+          </div>
         </div>
-        <h3 className="text-xl font-extrabold text-white mb-1">Dealer Transparency</h3>
-        <p className="text-sm text-blue-300 font-medium mb-4">Lead Developer &amp; Technical Architect</p>
-        <p className="text-blue-100 text-sm mb-5 flex-grow">Led architecture and development of an enterprise real-time vehicle tracking platform. Designed WebSocket data pipelines, automated third-party API syncs, and Zustand state management at scale.</p>
-        <div className="grid grid-cols-2 gap-3 mb-5">
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">WS</p>
-            <p className="text-xs text-gray-400">Real-time data sync</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">API</p>
-            <p className="text-xs text-gray-400">Automated integrations</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">✓</p>
-            <p className="text-xs text-gray-400">Enterprise scale</p>
-          </div>
-          <div className="bg-[#23283a] rounded-xl p-3 text-center">
-            <p className="text-lg font-extrabold text-white">✓</p>
-            <p className="text-xs text-gray-400">Multi-dealer tenancy</p>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {['Laravel', 'React', 'Zustand', 'WebSockets', 'MySQL'].map(t => (
-            <span key={t} className="text-xs bg-[#23283a] text-blue-300 border border-blue-900/40 rounded-full px-2.5 py-1">{t}</span>
-          ))}
-        </div>
-        <Link to="/case-studies/miles" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors mt-auto">View Case Study &rarr;</Link>
       </div>
 
     </div>
-
   </div>
 );
 
