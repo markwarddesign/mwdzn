@@ -6,13 +6,6 @@ import { Link } from 'react-router-dom';
 const ZustandMILES = () => {
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 font-sans">
-      <nav className="w-full px-6 py-4 flex justify-between items-center bg-gray-900/80 backdrop-blur-sm shadow-md border-b border-gray-800 fixed top-0 left-0 z-50">
-        <Link to="/" className="flex items-center space-x-3 text-gray-400 hover:text-blue-400 font-medium transition-colors text-base">
-          <FiArrowLeft />
-          <span>Back to Home</span>
-        </Link>
-      </nav>
-
       <main className="flex-1 pt-24">
         <article className="max-w-4xl mx-auto py-12 px-6">
 

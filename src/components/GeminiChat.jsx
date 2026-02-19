@@ -183,14 +183,16 @@ const GeminiChat = () => {
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && send(input)}
           placeholder="Ask about skills, projects, architecture…"
+          aria-label="Ask a question about Mark Ward"
           className="flex-1 bg-[#23283a] border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
         <button
           onClick={() => send(input)}
           disabled={loading || !input.trim()}
+          aria-label="Send message"
           className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-xl transition-colors flex items-center gap-2 text-white text-sm font-semibold"
         >
-          <FiSend size={15} />
+          <FiSend size={15} aria-hidden="true" />
         </button>
       </div>
     </div>

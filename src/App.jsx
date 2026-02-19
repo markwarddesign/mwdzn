@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiMenu, FiX, FiGithub, FiLinkedin, FiMail, FiArrowRight, FiLayers, FiCheckCircle, FiGlobe, FiShield, FiZap, FiCloud, FiActivity, FiRefreshCw, FiAward, FiLock } from 'react-icons/fi';
+import { FiMenu, FiX, FiGithub, FiLinkedin, FiMail, FiArrowRight, FiArrowLeft, FiLayers, FiCheckCircle, FiGlobe, FiShield, FiZap, FiCloud, FiActivity, FiRefreshCw, FiAward, FiLock } from 'react-icons/fi';
 import { FaUsers, FaMicrochip, FaChartBar, FaBolt, FaCodeBranch, FaFileAlt, FaCode, FaServer, FaTools, FaReact } from 'react-icons/fa';
 import DesignSystem from './pages/DesignSystem';
 import HeadlessVsMonolithic from './pages/HeadlessVsMonolithic';
@@ -15,6 +15,7 @@ import LaravelReverb from './pages/LaravelReverb';
 import ZustandMILES from './pages/ZustandMILES';
 import CaliforniaClosets from './pages/CaliforniaClosets';
 import RollupComponents from './pages/RollupComponents';
+import GeminiPortfolioAssistant from './pages/GeminiPortfolioAssistant';
 import FadeInSection from './components/FadeInSection';
 import GeminiChat from './components/GeminiChat';
 
@@ -30,7 +31,10 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Only scroll to top when navigating INTO a sub-page, not when returning home
+    if (pathname !== '/') {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return null;
@@ -90,6 +94,7 @@ const AppContent = () => {
           <Route path="/thoughts/zustand-miles" element={<ZustandMILES />} />
           <Route path="/case-studies/california-closets" element={<CaliforniaClosets />} />
           <Route path="/thoughts/rollup-gutenberg-components" element={<RollupComponents />} />
+          <Route path="/thoughts/gemini-portfolio-assistant" element={<GeminiPortfolioAssistant />} />
         </Routes>
       </main>
 
@@ -99,6 +104,9 @@ const AppContent = () => {
 }
 
 const Header = ({ handleNavClick, isMenuOpen, setIsMenuOpen }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isSubPage = location.pathname !== '/';
 
   // Sliding bar state
   const [barStyle, setBarStyle] = useState({ left: 0, width: 0 });
@@ -196,42 +204,60 @@ const Header = ({ handleNavClick, isMenuOpen, setIsMenuOpen }) => {
   return (
     <header className="w-full fixed top-0 left-0 z-50 bg-[#181c24] border-b border-[#23283a] shadow-lg transition-all duration-300">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-3 relative">
-        <Link to="/" className="flex items-center space-x-3 group">
+        <Link to="/" aria-label="Mark Ward – Home" className="flex items-center space-x-3 group">
           <img
             src="https://markwarddesign.com/wp-content/uploads/2018/04/Artboard-4@2x-1.png"
-            alt="Ward Logo"
+            alt=""
+            aria-hidden="true"
             className="h-10 w-auto group-hover:scale-105 transition-transform filter invert brightness-0 saturate-0"
           />
         </Link>
-        <nav ref={navRef} className="hidden md:flex items-center space-x-2 relative" style={{minHeight:44}}>
-          {navLinks.map((link, idx) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => {
-                handleNavClick(e, link.href);
-                setScrollingToIdx(idx);
-                moveBar(idx);
-              }}
-              onMouseEnter={() => moveBar(idx)}
-              onMouseLeave={() => moveBar(scrollingToIdx !== null ? scrollingToIdx : activeIdx)}
-              className={`relative px-4 py-2 font-medium transition-colors duration-200 focus:outline-none cursor-pointer ${(scrollingToIdx !== null ? scrollingToIdx : activeIdx) === idx ? 'text-blue-400' : 'text-blue-100 hover:text-blue-400'}`}
-              style={{zIndex:2}}
+        {isSubPage ? (
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-blue-300 hover:text-blue-400 font-medium transition-colors duration-200"
+          >
+            <FiArrowLeft size={16} aria-hidden="true" />
+            <span>Back</span>
+          </button>
+        ) : (
+          <>
+            <nav ref={navRef} className="hidden md:flex items-center space-x-2 relative" style={{minHeight:44}}>
+              {navLinks.map((link, idx) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    handleNavClick(e, link.href);
+                    setScrollingToIdx(idx);
+                    moveBar(idx);
+                  }}
+                  onMouseEnter={() => moveBar(idx)}
+                  onMouseLeave={() => moveBar(scrollingToIdx !== null ? scrollingToIdx : activeIdx)}
+                  className={`relative px-4 py-2 font-medium transition-colors duration-200 focus:outline-none cursor-pointer ${(scrollingToIdx !== null ? scrollingToIdx : activeIdx) === idx ? 'text-blue-400' : 'text-blue-100 hover:text-blue-400'}`}
+                  style={{zIndex:2}}
+                >
+                  {link.name}
+                </a>
+              ))}
+              {/* Sliding bar */}
+              <span
+                className="absolute bottom-0 h-1 bg-blue-500 rounded-full transition-all duration-300"
+                style={{ left: barStyle.left, width: barStyle.width, zIndex: 1 }}
+              />
+            </nav>
+            <button
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
+              className="md:hidden text-blue-100 bg-[#23283a] border border-[#23283a] rounded-full p-2 shadow focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {link.name}
-            </a>
-          ))}
-          {/* Sliding bar */}
-          <span
-            className="absolute bottom-0 h-1 bg-blue-500 rounded-full transition-all duration-300"
-            style={{ left: barStyle.left, width: barStyle.width, zIndex: 1 }}
-          />
-        </nav>
-  <button className="md:hidden text-blue-100 bg-[#23283a] border border-[#23283a] rounded-full p-2 shadow focus:outline-none" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
-        </button>
+              {isMenuOpen ? <FiX size={28} aria-hidden="true" /> : <FiMenu size={28} aria-hidden="true" />}
+            </button>
+          </>
+        )}
       </div>
-      {isMenuOpen && (
+      {!isSubPage && isMenuOpen && (
         <div className="md:hidden fixed top-0 left-0 w-full h-full bg-[#181c24] z-40 flex flex-col items-center justify-center space-y-8 animate-fade-in">
           {navLinks.map(link => (
             <a
@@ -333,7 +359,7 @@ const HeroSection = () => (
       </h2>
       <a href="#case-studies" className="inline-flex items-center px-8 py-3 rounded-full text-white font-bold shadow-lg bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 transition-all hover:opacity-90">
         <span>View My Work</span>
-        <FiArrowRight size={22} className="ml-3" />
+        <FiArrowRight size={22} className="ml-3" aria-hidden="true" />
       </a>
     </div>
   </section>
@@ -598,12 +624,20 @@ const SkillsSection = () => (
 
 const POSTS = [
   {
+    tag: 'AI / Architecture', tagClass: 'text-yellow-300 bg-yellow-900/25 border-yellow-700/40',
+    accentClass: 'border-l-yellow-500',
+    title: 'Building a Secure AI Assistant Into a Static Portfolio Site',
+    date: 'Feb 19, 2026', read: '7 min',
+    excerpt: 'How I built a Gemini 2.0 Flash-powered chat assistant into this site — and why the obvious VITE_* env var approach leaks your API key on every static deploy.',
+    to: '/thoughts/gemini-portfolio-assistant', isNew: true,
+  },
+  {
     tag: 'State Management', tagClass: 'text-purple-300 bg-purple-900/25 border-purple-700/40',
     accentClass: 'border-l-purple-500',
     title: 'Why We Chose Zustand Over Redux for a Real-Time Automotive SaaS',
     date: 'Feb 18, 2026', read: '8 min',
     excerpt: 'On MILES we needed surgical re-renders, WebSocket-to-state integration, and form persistence — without Redux boilerplate. Here\'s the full architecture.',
-    to: '/thoughts/zustand-miles', isNew: true,
+    to: '/thoughts/zustand-miles',
   },
   {
     tag: 'Real-Time', tagClass: 'text-cyan-300 bg-cyan-900/25 border-cyan-700/40',
@@ -731,7 +765,7 @@ const ContactSection = () => (
     <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team.</p>
     <a href="mailto:mark@markwarddesign.com" className="inline-flex items-center px-8 py-3 rounded-full text-white font-bold shadow-lg bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 transition-all hover:opacity-90">
       <span>Say Hello</span>
-      <FiMail size={22} className="ml-3" />
+      <FiMail size={22} className="ml-3" aria-hidden="true" />
     </a>
   </div>
 );
@@ -741,9 +775,9 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
       <p className="text-blue-100 mb-4 md:mb-0">&copy; {new Date().getFullYear()} Mark Ward. Built with React & Tailwind CSS.</p>
       <div className="flex space-x-6 items-center">
-        <a href="https://github.com/markwarddesign" target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-blue-400 transition-colors"><FiGithub size={24} /></a>
-        <a href="https://linkedin.com/in/markwarddesign" target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-blue-400 transition-colors"><FiLinkedin size={24} /></a>
-        <a href="mailto:mark@markwarddesign.com" className="text-blue-200 hover:text-blue-400 transition-colors"><FiMail size={24} /></a>
+        <a href="https://github.com/markwarddesign" target="_blank" rel="noopener noreferrer" aria-label="Mark Ward on GitHub" className="text-blue-200 hover:text-blue-400 transition-colors"><FiGithub size={24} aria-hidden="true" /></a>
+        <a href="https://linkedin.com/in/markwarddesign" target="_blank" rel="noopener noreferrer" aria-label="Mark Ward on LinkedIn" className="text-blue-200 hover:text-blue-400 transition-colors"><FiLinkedin size={24} aria-hidden="true" /></a>
+        <a href="mailto:mark@markwarddesign.com" aria-label="Email Mark Ward" className="text-blue-200 hover:text-blue-400 transition-colors"><FiMail size={24} aria-hidden="true" /></a>
         <a href="#home" className="ml-6 inline-flex items-center px-6 py-2 rounded-full text-white font-bold shadow-lg bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 transition-all hover:opacity-90">Back to Top</a>
       </div>
     </div>
