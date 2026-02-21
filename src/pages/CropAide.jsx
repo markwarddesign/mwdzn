@@ -241,6 +241,9 @@ const CropAide = () => {
             <a href="https://cropaide.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-2.5 rounded-full text-white font-bold shadow-lg bg-blue-600 hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm">
               Visit CropAide &rarr;
             </a>
+            <a href="https://dev.cc-website.com/cc-storybook/index.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-2.5 rounded-full text-white font-bold shadow-lg bg-purple-700 hover:bg-purple-800 hover:-translate-y-0.5 transition-all text-sm">
+              View Storybook &rarr;
+            </a>
           </div>
 
         </article>
