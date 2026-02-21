@@ -144,7 +144,8 @@ const CaliforniaClosets = () => {
             </p>
             <ul>
               <li>
-                <strong className="text-white">Storybook Integration:</strong> 200+ reusable React components (Accordions, Drawers, Navigation, Product Tiles, etc.) were built and documented in Storybook, enabling isolated testing before integration.
+                <strong className="text-white">Storybook Integration:</strong> 200+ reusable React components (Accordions, Drawers, Navigation, Product Tiles, etc.) were built and documented in{' '}
+                <a href="https://dev.cc-website.com/cc-storybook/index.html" target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:text-pink-300 underline underline-offset-2 transition-colors">Storybook</a>, enabling isolated testing before integration.
               </li>
               <li>
                 <strong className="text-white">Gutenberg Mapping:</strong> WordPress Gutenberg blocks were mapped 1:1 to frontend React components via a shared npm package bundled with Rollup. Content editors built complex layouts without touching code, and the live site rendered the exact same components they were arranging.
@@ -270,20 +271,30 @@ const CaliforniaClosets = () => {
             <div className="not-prose mt-12 bg-gray-900 border border-blue-800/50 rounded-xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-1">Explore further</p>
-                <p className="text-gray-300 text-sm">Visit the live site, or read about the shared component architecture behind the Gutenberg integration.</p>
+                <p className="text-gray-300 text-sm">Visit the live site, browse the component library, or read about the shared component architecture behind the Gutenberg integration.</p>
               </div>
-              <div className="flex flex-wrap gap-3 flex-shrink-0">
-                <a
-                  href="https://www.californiaclosets.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-all hover:-translate-y-0.5 shadow"
-                >
-                  Visit Live Site <FiExternalLink size={14} />
-                </a>
+              <div className="flex flex-col gap-3 flex-shrink-0">
+                <div className="flex gap-3">
+                  <a
+                    href="https://www.californiaclosets.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-all hover:-translate-y-0.5 shadow"
+                  >
+                    Visit Live Site <FiExternalLink size={14} />
+                  </a>
+                  <a
+                    href="https://dev.cc-website.com/cc-storybook/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-700 hover:bg-purple-800 text-white font-bold text-sm transition-all hover:-translate-y-0.5 shadow"
+                  >
+                    <SiStorybook size={14} /> View Storybook
+                  </a>
+                </div>
                 <Link
                   to="/thoughts/rollup-gutenberg-components"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white font-bold text-sm transition-all hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white font-bold text-sm transition-all hover:-translate-y-0.5 text-center"
                 >
                   Read: Shared Components Post &rarr;
                 </Link>

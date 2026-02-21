@@ -450,7 +450,8 @@ const CaseStudiesSection = () => (
             </div>
             <div>
               <a href="https://www.californiaclosets.com" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors mr-4">Visit Live Site &rarr;</a>
-              <Link to="/case-studies/california-closets" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors">Read Case Study &rarr;</Link>
+              <Link to="/case-studies/california-closets" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors mr-4">Read Case Study &rarr;</Link>
+              <a href="https://dev.cc-website.com/cc-storybook/index.html" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-purple-400 hover:text-purple-300 transition-colors">View Storybook &rarr;</a>
             </div>
           </div>
           <div className="bg-gradient-to-br from-[#23283a] to-[#1a1f2e] border border-blue-800/40 rounded-2xl p-6">
@@ -505,8 +506,7 @@ const CaseStudiesSection = () => (
             </div>
             <div>
               <a href="https://cropaide.com/" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors mr-4">Visit Live Site &rarr;</a>
-              <Link to="/case-studies/cropaide" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors mr-4">Read Case Study &rarr;</Link>
-              <a href="https://dev.cc-website.com/cc-storybook/index.html" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-purple-400 hover:text-purple-300 transition-colors">View Storybook &rarr;</a>
+              <Link to="/case-studies/cropaide" className="inline-block font-semibold text-blue-400 hover:text-blue-300 transition-colors">Read Case Study &rarr;</Link>
             </div>
           </div>
           <div className="bg-gradient-to-br from-[#1a2420] to-[#1a1f2e] border border-green-800/40 rounded-2xl p-6">
