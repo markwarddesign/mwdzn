@@ -43,7 +43,7 @@ const GeminiChat = () => {
         const updated = [...prev];
         updated[updated.length - 1] = {
           role: 'model',
-          text: "Mark hasn't configured a live API key for this demo yet — but the integration is fully wired up with streaming support. Check out his CropAide case study to see real architecture decisions in action.",
+          text: "Something went wrong — the worker URL isn't configured in this environment. The integration is fully live via a Cloudflare Worker with streaming support.",
         };
         return updated;
       });
