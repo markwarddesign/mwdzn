@@ -12,7 +12,7 @@ This isn't a template. Every page is hand-crafted to tell a specific story:
 
 - **Case studies** — deep-dives into real shipped work (California Closets, CropAide, MILES)
 - **Thoughts** — technical posts on architecture decisions and patterns I've actually used
-- **AI Assistant** — a Gemini 2.0-powered chat interface that answers questions about my experience, streamed via a Cloudflare Worker to keep the API key server-side
+- **AI Assistant** — a Gemini 2.5 Flash-Lite-powered chat interface that answers questions about my experience, streamed via a Cloudflare Worker to keep the API key server-side
 
 ---
 
@@ -23,7 +23,7 @@ This isn't a template. Every page is hand-crafted to tell a specific story:
 | Frontend | React 19 + Vite | Fast builds, modern hooks, no unnecessary abstraction |
 | Styling | Tailwind CSS + Typography plugin | Utility-first, consistent design tokens |
 | Routing | React Router v7 | Client-side SPA routing with GitHub Pages support |
-| AI | Google Gemini 2.0 Flash | Streaming SSE responses, grounded in a custom knowledge base |
+| AI | Google Gemini 2.5 Flash-Lite | Streaming SSE responses, grounded in a custom knowledge base |
 | AI Proxy | Cloudflare Workers | Keeps the API key out of the browser, handles CORS |
 | Deployment | GitHub Actions → GitHub Pages | Automated on every push to `main` |
 
@@ -32,7 +32,7 @@ This isn't a template. Every page is hand-crafted to tell a specific story:
 ## Architecture Highlights
 
 ### AI Assistant
-The portfolio includes a live AI assistant powered by Gemini 2.0 Flash. Rather than exposing a key in client-side code, the frontend posts to a **Cloudflare Worker** which injects the secret and proxies the streaming SSE response back to the browser. The assistant's personality and knowledge base are entirely driven by [`src/assistantConfig.js`](src/assistantConfig.js) — updating what it knows requires zero code changes.
+The portfolio includes a live AI assistant powered by Gemini 2.5 Flash-Lite. Rather than exposing a key in client-side code, the frontend posts to a **Cloudflare Worker** which injects the secret and proxies the streaming SSE response back to the browser. The assistant's personality and knowledge base are entirely driven by [`src/assistantConfig.js`](src/assistantConfig.js) — updating what it knows requires zero code changes.
 
 ```
 Browser → VITE_GEMINI_WORKER_URL (Cloudflare Worker) → Gemini API (streaming SSE)
