@@ -130,7 +130,7 @@ const genAI = new GoogleGenerativeAI(apiKey);`}</code>
 
     // env.GEMINI_API_KEY is a Cloudflare secret — never visible to the client
     const geminiRes = await fetch(
-      \`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent?alt=sse&key=\${env.GEMINI_API_KEY}\`,
+      \`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=\${env.GEMINI_API_KEY}\`,
       { method: 'POST', headers: { 'Content-Type': 'application/json' }, body }
     );
 
