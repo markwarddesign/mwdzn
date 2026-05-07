@@ -17,6 +17,8 @@ import CaliforniaClosets from './pages/CaliforniaClosets';
 import RollupComponents from './pages/RollupComponents';
 import GeminiPortfolioAssistant from './pages/GeminiPortfolioAssistant';
 import ProjectAire from './pages/ProjectAire';
+import RealtimeChat from './pages/RealtimeChat';
+import ApryseWebViewer from './pages/ApryseWebViewer';
 import FadeInSection from './components/FadeInSection';
 import GeminiChat from './components/GeminiChat';
 
@@ -97,6 +99,8 @@ const AppContent = () => {
           <Route path="/case-studies/projectaire" element={<ProjectAire />} />
           <Route path="/thoughts/rollup-gutenberg-components" element={<RollupComponents />} />
           <Route path="/thoughts/gemini-portfolio-assistant" element={<GeminiPortfolioAssistant />} />
+          <Route path="/thoughts/realtime-chat-laravel" element={<RealtimeChat />} />
+          <Route path="/thoughts/apryse-webviewer" element={<ApryseWebViewer />} />
         </Routes>
       </main>
 
@@ -681,6 +685,22 @@ const SkillsSection = () => (
 );
 
 const POSTS = [
+  {
+    tag: 'PDF · Annotations', tagClass: 'text-amber-300 bg-amber-900/25 border-amber-700/40',
+    accentClass: 'border-l-amber-500',
+    title: 'Putting Apryse WebViewer in Front of Construction Drawings',
+    date: 'Apr 9, 2026', read: '9 min',
+    excerpt: 'How we got real PDF markup — with multi-user annotations, delta sync, mentions, and version history — into our construction project management app.',
+    to: '/thoughts/apryse-webviewer', isNew: true,
+  },
+  {
+    tag: 'Real-Time · WebSockets', tagClass: 'text-cyan-300 bg-cyan-900/25 border-cyan-700/40',
+    accentClass: 'border-l-cyan-500',
+    title: 'Building Realtime Chat into a Laravel + React App',
+    date: 'Mar 12, 2026', read: '8 min',
+    excerpt: 'How we shipped per-project chat channels with mentions, presence, and live updates — without paying for Pusher. The data model, event design, and the reconnect trap.',
+    to: '/thoughts/realtime-chat-laravel',
+  },
   {
     tag: 'AI / Architecture', tagClass: 'text-yellow-300 bg-yellow-900/25 border-yellow-700/40',
     accentClass: 'border-l-yellow-500',
