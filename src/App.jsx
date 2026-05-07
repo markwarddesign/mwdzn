@@ -16,6 +16,7 @@ import ZustandMILES from './pages/ZustandMILES';
 import CaliforniaClosets from './pages/CaliforniaClosets';
 import RollupComponents from './pages/RollupComponents';
 import GeminiPortfolioAssistant from './pages/GeminiPortfolioAssistant';
+import ProjectAire from './pages/ProjectAire';
 import FadeInSection from './components/FadeInSection';
 import GeminiChat from './components/GeminiChat';
 
@@ -93,6 +94,7 @@ const AppContent = () => {
           <Route path="/thoughts/laravel-reverb" element={<LaravelReverb />} />
           <Route path="/thoughts/zustand-miles" element={<ZustandMILES />} />
           <Route path="/case-studies/california-closets" element={<CaliforniaClosets />} />
+          <Route path="/case-studies/projectaire" element={<ProjectAire />} />
           <Route path="/thoughts/rollup-gutenberg-components" element={<RollupComponents />} />
           <Route path="/thoughts/gemini-portfolio-assistant" element={<GeminiPortfolioAssistant />} />
         </Routes>
@@ -536,6 +538,61 @@ const CaseStudiesSection = () => (
             <div className="flex flex-wrap gap-1.5">
               {['Laravel 11', 'PHP 8.2', 'MySQL', 'Cloudflare R2', 'Stripe', 'GitHub Actions'].map(t => (
                 <span key={t} className="text-xs bg-[#181c24] text-green-300 border border-green-800/50 rounded-full px-2.5 py-1">{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ProjectAire */}
+      <div className="bg-[#1e2230] rounded-xl shadow-lg overflow-hidden p-8 md:p-12 border border-orange-900/60">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-orange-400 bg-orange-900/20 px-3 py-1 rounded-full">SaaS · Co-Founder</span>
+              <span className="text-xs text-gray-500">Production</span>
+            </div>
+            <h3 className="text-3xl font-bold text-blue-100 mb-2">ProjectAire</h3>
+            <h4 className="text-xl font-semibold text-blue-50 mb-4">Construction Project Management Built for Confidence</h4>
+            <p className="text-blue-100 mb-6">Co-founded and built a SaaS platform that gives construction teams real-time project tracking, team collaboration, and actionable analytics — from a single unified dashboard. Architected three-tier plan gating, WebSocket-powered live updates, and a pre-computed analytics pipeline.</p>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-start space-x-3"><FaCodeBranch className="text-orange-400 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">My Role:</strong> Co-Founder, Lead Engineer &amp; Architect</div></div>
+              <div className="flex items-start space-x-3"><FaMicrochip className="text-orange-400 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">Key Tech:</strong> Laravel, React, MySQL, Stripe, WebSockets</div></div>
+              <div className="flex items-start space-x-3"><FaChartBar className="text-orange-400 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">Highlights:</strong> Plan-based middleware gating, real-time collaboration, pre-aggregated reporting engine.</div></div>
+              <div className="flex items-start space-x-3"><FaBolt className="text-orange-400 mt-1 flex-shrink-0" size={18} /><div><strong className="text-blue-50">Status:</strong> Live in production with Starter, Professional &amp; Enterprise tiers.</div></div>
+            </div>
+            <div>
+              <a href="https://projectaire.app/" target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-orange-400 hover:text-orange-300 transition-colors mr-4">Visit Live Site &rarr;</a>
+              <Link to="/case-studies/projectaire" className="inline-block font-semibold text-orange-400 hover:text-orange-300 transition-colors">Read Case Study &rarr;</Link>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-[#2a1e14] to-[#1a1f2e] border border-orange-800/40 rounded-2xl p-6">
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-500/70 mb-4">At a Glance</p>
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              <div className="bg-[#181c24] border-t-2 border-orange-500 rounded-xl p-4 text-center">
+                <FiLayers className="mx-auto text-orange-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">3</p>
+                <p className="text-xs text-gray-400 mt-1">Pricing tiers</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-orange-500 rounded-xl p-4 text-center">
+                <FiActivity className="mx-auto text-orange-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">RT</p>
+                <p className="text-xs text-gray-400 mt-1">Live collaboration</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-orange-500 rounded-xl p-4 text-center">
+                <FiZap className="mx-auto text-orange-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">0→1</p>
+                <p className="text-xs text-gray-400 mt-1">Full build</p>
+              </div>
+              <div className="bg-[#181c24] border-t-2 border-orange-500 rounded-xl p-4 text-center">
+                <FaChartBar className="mx-auto text-orange-400 mb-1.5" size={15} />
+                <p className="text-2xl font-extrabold text-white">∞</p>
+                <p className="text-xs text-gray-400 mt-1">Projects (Enterprise)</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {['Laravel', 'React', 'MySQL', 'Stripe', 'WebSockets', 'GitHub Actions'].map(t => (
+                <span key={t} className="text-xs bg-[#181c24] text-orange-300 border border-orange-800/50 rounded-full px-2.5 py-1">{t}</span>
               ))}
             </div>
           </div>
