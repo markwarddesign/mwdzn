@@ -30,6 +30,13 @@ const navLinks = [
   { name: 'Contact', href: '#contact' },
 ];
 
+// Helper to fire GA4 events safely
+const trackEvent = (eventName, params = {}) => {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
+};
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -37,6 +44,15 @@ const ScrollToTop = () => {
     // Only scroll to top when navigating INTO a sub-page, not when returning home
     if (pathname !== '/') {
       window.scrollTo(0, 0);
+    }
+
+    // Fire GA4 page_view on every client-side route change
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'page_view', {
+        page_path: pathname,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
     }
   }, [pathname]);
 
@@ -841,7 +857,11 @@ const ContactSection = () => (
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <h2 className="text-4xl font-bold text-white mb-4">Get In Touch</h2>
     <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team.</p>
-    <a href="mailto:mark@markwarddesign.com" className="inline-flex items-center px-8 py-3 rounded-full text-white font-bold shadow-lg bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 transition-all hover:opacity-90">
+    <a
+      href="mailto:mark@markwarddesign.com"
+      className="inline-flex items-center px-8 py-3 rounded-full text-white font-bold shadow-lg bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 transition-all hover:opacity-90"
+      onClick={() => trackEvent('contact_email_click', { method: 'contact_section' })}
+    >
       <span>Say Hello</span>
       <FiMail size={22} className="ml-3" aria-hidden="true" />
     </a>
@@ -853,9 +873,9 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
       <p className="text-blue-100 mb-4 md:mb-0">&copy; {new Date().getFullYear()} Mark Ward. Built with React & Tailwind CSS.</p>
       <div className="flex space-x-6 items-center">
-        <a href="https://github.com/markwarddesign" target="_blank" rel="noopener noreferrer" aria-label="Mark Ward on GitHub" className="text-blue-200 hover:text-blue-400 transition-colors"><FiGithub size={24} aria-hidden="true" /></a>
-        <a href="https://linkedin.com/in/markwarddesign" target="_blank" rel="noopener noreferrer" aria-label="Mark Ward on LinkedIn" className="text-blue-200 hover:text-blue-400 transition-colors"><FiLinkedin size={24} aria-hidden="true" /></a>
-        <a href="mailto:mark@markwarddesign.com" aria-label="Email Mark Ward" className="text-blue-200 hover:text-blue-400 transition-colors"><FiMail size={24} aria-hidden="true" /></a>
+        <a href="https://github.com/markwarddesign" target="_blank" rel="noopener noreferrer" aria-label="Mark Ward on GitHub" className="text-blue-200 hover:text-blue-400 transition-colors" onClick={() => trackEvent('outbound_link_click', { link_url: 'https://github.com/markwarddesign', link_type: 'github' })}><FiGithub size={24} aria-hidden="true" /></a>
+        <a href="https://linkedin.com/in/markwarddesign" target="_blank" rel="noopener noreferrer" aria-label="Mark Ward on LinkedIn" className="text-blue-200 hover:text-blue-400 transition-colors" onClick={() => trackEvent('outbound_link_click', { link_url: 'https://linkedin.com/in/markwarddesign', link_type: 'linkedin' })}><FiLinkedin size={24} aria-hidden="true" /></a>
+        <a href="mailto:mark@markwarddesign.com" aria-label="Email Mark Ward" className="text-blue-200 hover:text-blue-400 transition-colors" onClick={() => trackEvent('contact_email_click', { method: 'footer' })}><FiMail size={24} aria-hidden="true" /></a>
         <a href="#home" className="ml-6 inline-flex items-center px-6 py-2 rounded-full text-white font-bold shadow-lg bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 transition-all hover:opacity-90">Back to Top</a>
       </div>
     </div>

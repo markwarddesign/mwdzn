@@ -28,13 +28,22 @@ const GeminiChat = () => {
     }
   }, [displayMessages]);
 
-  const send = async (text) => {
+  const send = async (text, isSuggested = false) => {
     if (!text.trim() || loading) return;
     setShowSuggested(false);
     setDisplayMessages(prev => [...prev, { role: 'user', text }]);
     setInput('');
     setLoading(true);
     setDisplayMessages(prev => [...prev, { role: 'model', text: '' }]);
+
+    // Track chat interaction in GA4
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'ai_chat_message', {
+        event_category: 'AI Assistant',
+        event_label: isSuggested ? 'suggested_prompt' : 'freeform',
+        message_preview: text.slice(0, 100),
+      });
+    }
 
     const workerUrl = import.meta.env.VITE_GEMINI_WORKER_URL;
 
@@ -166,7 +175,7 @@ const GeminiChat = () => {
           {SUGGESTED.map(q => (
             <button
               key={q}
-              onClick={() => send(q)}
+              onClick={() => send(q, true)}
               className="text-xs bg-[#23283a] border border-blue-900/50 text-blue-300 rounded-full px-3 py-1.5 hover:bg-blue-900/30 hover:border-blue-500 transition-colors"
             >
               {q}

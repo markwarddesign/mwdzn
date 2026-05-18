@@ -13,7 +13,8 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-SFJMTLBVEV');
+      // send_page_view: false — React Router fires page_view events manually on route change
+      gtag('config', 'G-SFJMTLBVEV', { send_page_view: false });
     </script>
   </head>
   <body>
