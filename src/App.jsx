@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 import { Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
 import Lenis from 'lenis';
-import { ArrowUpRight, ArrowLeft } from 'lucide-react';
+import { ArrowUpRight, ArrowLeft, Sparkles, X as XIcon, Send } from 'lucide-react';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { buildSystemPrompt } from './assistantConfig';
 
 import DesignSystem from './pages/DesignSystem';
 import HeadlessVsMonolithic from './pages/HeadlessVsMonolithic';
@@ -170,9 +171,185 @@ const Nav = () => {
   );
 };
 
+/* ---------- AI assistant — context + drawer ---------- */
+
+const ChatContext = createContext({ openChat: () => {} });
+const useChat = () => useContext(ChatContext);
+
+const ChatDrawer = ({ open, onClose }) => {
+  const [messages, setMessages] = useState([
+    { role: 'model', text: "Hi — I'm Mark's AI assistant. Ask me anything about his experience, architecture decisions, or tech stack." },
+  ]);
+  const [history, setHistory] = useState([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const scrollRef = useRef(null);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (open && inputRef.current) setTimeout(() => inputRef.current?.focus(), 250);
+  }, [open]);
+
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [messages]);
+
+  // ESC to close
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, onClose]);
+
+  const SUGGESTED = [
+    'What are your strongest skills?',
+    'Tell me about MILES',
+    'How do you handle multi-tenant auth?',
+    'What leadership experience do you have?',
+  ];
+
+  const send = async (text) => {
+    if (!text.trim() || loading) return;
+    setMessages((m) => [...m, { role: 'user', text }, { role: 'model', text: '' }]);
+    setInput('');
+    setLoading(true);
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'ai_chat_message', {
+        event_category: 'AI Assistant',
+        message_preview: text.slice(0, 100),
+      });
+    }
+
+    const workerUrl = import.meta.env.VITE_GEMINI_WORKER_URL;
+    if (!workerUrl) {
+      setMessages((m) => {
+        const u = [...m];
+        u[u.length - 1] = { role: 'model', text: "The assistant is offline in this environment (VITE_GEMINI_WORKER_URL not set). Try the deployed site." };
+        return u;
+      });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const nextHistory = [...history, { role: 'user', parts: [{ text }] }];
+      const res = await fetch(workerUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: nextHistory,
+          systemInstruction: { parts: [{ text: buildSystemPrompt() }] },
+        }),
+      });
+      if (!res.ok) throw new Error(`API ${res.status}`);
+      const data = await res.json();
+      const replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'No response.';
+      setMessages((m) => {
+        const u = [...m];
+        u[u.length - 1] = { role: 'model', text: replyText };
+        return u;
+      });
+      setHistory([...nextHistory, { role: 'model', parts: [{ text: replyText }] }]);
+    } catch (err) {
+      setMessages((m) => {
+        const u = [...m];
+        u[u.length - 1] = { role: 'model', text: `Something went wrong (${err.message}).` };
+        return u;
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        className={`fixed inset-0 z-[60] bg-ink/30 backdrop-blur-sm transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        aria-hidden="true"
+      />
+      {/* Panel */}
+      <aside
+        role="dialog"
+        aria-label="Chat with Mark's AI assistant"
+        aria-modal="true"
+        className={`fixed top-0 right-0 z-[61] h-full w-full sm:w-[440px] bg-paper border-l border-rule shadow-xl flex flex-col transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <header className="flex items-center justify-between px-5 h-14 border-b border-rule flex-shrink-0">
+          <div className="flex items-center gap-2.5">
+            <Sparkles size={15} className="text-accent" />
+            <span className="font-display font-semibold text-ink text-[15px] tracking-tighter2">AI assistant</span>
+            <span className="meta !text-[10px]">Gemini</span>
+          </div>
+          <button type="button" onClick={onClose} aria-label="Close" className="inline-flex items-center justify-center w-9 h-9 rounded-full text-ink-quiet hover:text-ink hover:bg-paper-2 transition-colors">
+            <XIcon size={16} />
+          </button>
+        </header>
+
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-6 space-y-5">
+          {messages.map((m, i) => (
+            <div key={i} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+              <span className="meta !text-[10px] mb-1.5">{m.role === 'user' ? 'You' : 'Mark · AI'}</span>
+              <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-[14.5px] leading-[1.55] whitespace-pre-wrap ${
+                m.role === 'user'
+                  ? 'bg-ink text-paper'
+                  : 'bg-surface border border-rule text-ink-soft'
+              }`}>
+                {m.text || (loading && i === messages.length - 1 ? '…' : '')}
+              </div>
+            </div>
+          ))}
+          {messages.length <= 1 && (
+            <div className="pt-2 space-y-2">
+              <div className="meta">Try asking</div>
+              {SUGGESTED.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => send(s)}
+                  className="block w-full text-left text-[14px] text-ink-soft border border-rule rounded-lg px-3 py-2 hover:bg-paper-2 hover:border-rule-strong transition-colors"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <form
+          onSubmit={(e) => { e.preventDefault(); send(input); }}
+          className="border-t border-rule p-3 flex items-center gap-2 flex-shrink-0"
+        >
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Ask anything about Mark's work…"
+            disabled={loading}
+            className="flex-1 bg-paper-2 border border-rule rounded-full px-4 py-2.5 text-[14.5px] text-ink placeholder:text-ink-faint focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
+          />
+          <button
+            type="submit"
+            disabled={loading || !input.trim()}
+            aria-label="Send"
+            className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-paper hover:bg-accent transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            <Send size={15} />
+          </button>
+        </form>
+      </aside>
+    </>
+  );
+};
+
 /* ---------- hero ---------- */
 
-const Hero = () => (
+const Hero = () => {
+  const { openChat } = useChat();
+  return (
   <section id="top" className="pt-32 lg:pt-40 pb-12 lg:pb-16">
     <div className="max-w-[1240px] mx-auto px-6 lg:px-10">
       <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-end">
@@ -190,7 +367,7 @@ const Hero = () => (
             production work — Laravel, React, Next.js — and a clear sense of what matters and what's just noise.
           </p>
         </Reveal>
-        <Reveal as="div" delay={120} className="lg:col-span-4">
+        <Reveal as="div" delay={120} className="lg:col-span-4 space-y-4">
           <figure className="tile p-0 overflow-hidden bg-surface">
             <img src="/mark-headshot.jpg" alt="Mark Ward" className="block w-full aspect-square object-cover" />
             <figcaption className="px-5 py-4 flex items-baseline justify-between gap-4 border-t border-rule">
@@ -198,19 +375,34 @@ const Hero = () => (
               <span className="meta">15 yrs</span>
             </figcaption>
           </figure>
+          <button
+            type="button"
+            onClick={openChat}
+            className="group w-full tile px-5 py-4 flex items-center justify-between gap-3 text-left hover:border-rule-strong transition-colors"
+          >
+            <span className="flex items-center gap-3">
+              <Sparkles size={16} className="text-accent flex-shrink-0" />
+              <span>
+                <span className="block font-display font-semibold text-ink text-[15px] tracking-tighter2 leading-tight">Ask my AI assistant</span>
+                <span className="meta !text-[10px] mt-0.5 block">Gemini · grounded in my work</span>
+              </span>
+            </span>
+            <ArrowUpRight size={15} className="text-ink-quiet group-hover:text-ink tile-arrow flex-shrink-0" />
+          </button>
         </Reveal>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 /* ---------- proof strip ---------- */
 
 const PROOF = [
-  { k: '15+', v: 'years shipping production' },
-  { k: '3',   v: 'SaaS products co-founded' },
-  { k: '7',   v: 'eng-team headcount, peak' },
-  { k: '0',   v: 'committed launch dates missed' },
+  { k: '15+',  v: 'years shipping production' },
+  { k: '3',    v: 'SaaS products co-founded' },
+  { k: '7',    v: 'eng-team headcount, peak' },
+  { k: '200+', v: 'Storybook components shipped' },
 ];
 
 const Proof = () => (
@@ -570,9 +762,17 @@ const AppContent = () => {
   }, [navigate]);
 
   const lenis = useLenisInit();
+  const [chatOpen, setChatOpen] = useState(false);
+  const openChat = () => {
+    setChatOpen(true);
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'ai_chat_open', { event_category: 'AI Assistant' });
+    }
+  };
 
   return (
     <LenisContext.Provider value={lenis}>
+      <ChatContext.Provider value={{ openChat }}>
       <div className="bg-paper text-ink min-h-screen">
         <Nav />
         <main>
@@ -596,7 +796,9 @@ const AppContent = () => {
           </Routes>
         </main>
         <Footer />
+        <ChatDrawer open={chatOpen} onClose={() => setChatOpen(false)} />
       </div>
+      </ChatContext.Provider>
     </LenisContext.Provider>
   );
 };
