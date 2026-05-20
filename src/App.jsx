@@ -141,8 +141,21 @@ const Nav = () => {
               <ArrowLeft size={15} />
             </Link>
           )}
-          <Link to="/" aria-label="Mark Ward — home" className="font-display font-semibold tracking-tighter2 text-[18px] text-ink hover:text-accent transition-colors">
-            Mark Ward
+          <Link to="/" aria-label="Mark Ward — home" className="group inline-flex items-center">
+            <span
+              aria-hidden="true"
+              className="block h-6 w-[88px] bg-ink group-hover:bg-accent transition-colors"
+              style={{
+                WebkitMaskImage: 'url(/logo.png)',
+                maskImage: 'url(/logo.png)',
+                WebkitMaskSize: 'contain',
+                maskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'left center',
+                maskPosition: 'left center',
+              }}
+            />
           </Link>
         </div>
         <nav className="hidden sm:flex items-center gap-7 text-[14px] text-ink-soft">
@@ -166,7 +179,7 @@ const Hero = () => (
   <section id="top" className="pt-32 lg:pt-40 pb-12 lg:pb-16">
     <div className="max-w-[1240px] mx-auto px-6 lg:px-10">
       <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-end">
-        <Reveal as="div" className="lg:col-span-9">
+        <Reveal as="div" className="lg:col-span-8">
           <div className="flex items-center gap-3 mb-7">
             <span className="status-dot" aria-hidden="true" />
             <span className="meta text-ink">Open to Senior / Lead roles — May 2026</span>
@@ -180,16 +193,14 @@ const Hero = () => (
             production work — Laravel, React, Next.js — and a clear sense of what matters and what's just noise.
           </p>
         </Reveal>
-        <Reveal as="div" delay={120} className="lg:col-span-3">
-          <div className="tile p-6 lg:p-7 h-full">
-            <div className="meta mb-3">Currently</div>
-            <div className="text-[14.5px] text-ink-soft leading-snug">
-              Lead Developer at <span className="text-ink font-medium">Third &amp; Grove</span>. Co-founder of <span className="text-ink font-medium">CropAide</span>, <span className="text-ink font-medium">MILES</span>, and <span className="text-ink font-medium">ProjectAire</span>.
-            </div>
-            <div className="mt-5 flex items-center gap-2">
+        <Reveal as="div" delay={120} className="lg:col-span-4">
+          <figure className="tile p-0 overflow-hidden bg-surface">
+            <img src="/mark-headshot.jpg" alt="Mark Ward" className="block w-full aspect-square object-cover" />
+            <figcaption className="px-5 py-4 flex items-baseline justify-between gap-4 border-t border-rule">
               <span className="meta">Twin Falls, ID · Remote</span>
-            </div>
-          </div>
+              <span className="meta">15 yrs</span>
+            </figcaption>
+          </figure>
         </Reveal>
       </div>
     </div>
@@ -376,12 +387,19 @@ const Work = () => (
 /* ---------- writing — real titles from /thoughts/ routes ---------- */
 
 const POSTS = [
-  { cat: 'Real-time',    title: 'Real-time chat with Laravel Reverb',                    excerpt: 'Private channels, presence, mentions, and a single useChat hook. About 1,200 lines of PHP and 1,800 of JSX, two weeks to first usable.', href: '/thoughts/laravel-reverb' },
-  { cat: 'Real-time',    title: 'Putting Apryse WebViewer in front of construction drawings', excerpt: 'Multi-user PDF annotation over Reverb broadcasting, XFDF on the wire, three weeks of license-key plumbing and read-only mode gotchas.', href: '/thoughts/apryse-webviewer' },
-  { cat: 'Architecture', title: 'Headless vs. monolithic: choosing the right tool',      excerpt: 'Where the headless-WordPress argument actually pays off, and where it costs you more than it saves. A field-tested take from production rebuilds.', href: '/thoughts/headless-vs-monolithic' },
-  { cat: 'Architecture', title: 'Row-level authorization for multi-tenant SaaS',          excerpt: 'Policy-based authorization across Grower / Advisor / Dealer roles in CropAide — what off-the-shelf packages miss, and how I modeled it from scratch.', href: '/thoughts/laravel-rbac' },
-  { cat: 'Frontend',     title: 'Why Zustand for a real-time dashboard',                 excerpt: 'Predictable state flow, surgical re-renders, real-time without complexity. Why MILES uses Zustand instead of Redux or React Query.', href: '/thoughts/zustand-miles' },
-  { cat: 'Practice',     title: 'The unseen value of a design system',                   excerpt: 'A design system is not the icon library. It is the contract between designers and engineers that lets a team ship a hundred pages without arguing about button padding.', href: '/thoughts/design-system' },
+  { cat: 'Real-time',    title: 'Killing the Refresh Button: Real-Time Dealership Ops with Laravel Reverb', excerpt: 'Private channels, presence, mentions, and a single useChat hook. The WebSocket layer that makes MILES feel like Google Docs for deal desks.', href: '/thoughts/laravel-reverb' },
+  { cat: 'Real-time',    title: 'Putting Apryse WebViewer in Front of Construction Drawings',              excerpt: 'Multi-user PDF annotation over Reverb broadcasting, XFDF on the wire, three weeks of license-key plumbing and read-only mode gotchas.', href: '/thoughts/apryse-webviewer' },
+  { cat: 'Real-time',    title: 'Building Realtime Chat into a Laravel + React App',                      excerpt: 'Channels, broadcasts, presence, and the reconnect path that always gets you bitten if you don\'t plan for it.', href: '/thoughts/realtime-chat-laravel' },
+  { cat: 'Architecture', title: 'Headless vs. Monolithic: Choosing the Right Tool for the Job',           excerpt: 'Where the headless-WordPress argument actually pays off, and where it costs you more than it saves. A field-tested take from production rebuilds.', href: '/thoughts/headless-vs-monolithic' },
+  { cat: 'Architecture', title: 'Escaping RBAC Hell: Multi-Tenant Hierarchies in Laravel',                 excerpt: 'Policy-based authorization across Grower / Advisor / Dealer roles in CropAide — what off-the-shelf packages miss, and how I modeled it from scratch.', href: '/thoughts/laravel-rbac' },
+  { cat: 'Architecture', title: 'One Package, Two Runtimes: React Components Between Next.js and Gutenberg', excerpt: 'How we bundled a shared React component library with Rollup so the live Next.js site and the WordPress CMS editor render the same blocks.', href: '/thoughts/rollup-gutenberg-components' },
+  { cat: 'Architecture', title: 'Headless WordPress at Scale with WP Engine, Faust.js, and Atlas',         excerpt: 'When WPE\'s managed headless stack is worth it, when it isn\'t, and what the Atlas deployment story actually looks like in production.', href: '/thoughts/wpe-faustjs-atlas' },
+  { cat: 'Frontend',     title: 'Why We Chose Zustand Over Redux for a Real-Time Automotive SaaS',         excerpt: 'Predictable state flow, surgical re-renders, real-time without complexity. Why MILES uses Zustand instead of Redux or React Query.', href: '/thoughts/zustand-miles' },
+  { cat: 'Frontend',     title: 'Mastering the Block: Modern WordPress with Gutenberg',                   excerpt: 'How Gutenberg actually works under the hood, and how to build custom blocks editors will use without complaining.', href: '/thoughts/wordpress-gutenberg' },
+  { cat: 'Infra',        title: 'Why I Chose Laravel Cloud Over AWS for a Production SaaS',               excerpt: 'Laravel Cloud vs. rolling your own AWS stack — total cost of ownership, ops budget, and the tradeoffs that matter at small team scale.', href: '/thoughts/laravel-cloud' },
+  { cat: 'Infra',        title: 'The Power of the Pipeline: CI/CD for Modern Web Development',            excerpt: 'GitHub Actions, branch previews, automated tests, and the build pipeline that lets a team of seven engineers ship without stepping on each other.', href: '/thoughts/ci-cd' },
+  { cat: 'Practice',     title: 'The Unseen Value of a Design System',                                    excerpt: 'A design system is not the icon library. It\'s the contract between designers and engineers that lets a team ship a hundred pages without arguing about button padding.', href: '/thoughts/design-system' },
+  { cat: 'AI',           title: 'Building a Secure AI Assistant Into a Static Portfolio Site',            excerpt: 'How the Gemini-powered chat on this portfolio works — Cloudflare Workers as the API key broker, SSE streaming back to the browser, knowledge base in code.', href: '/thoughts/gemini-portfolio-assistant' },
 ];
 
 const PostCard = ({ p }) => (
