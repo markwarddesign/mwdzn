@@ -175,6 +175,118 @@ html.lenis, html.lenis body { height: auto; }
 .measure       { max-width: 64ch; }
 .measure-tight { max-width: 54ch; }
 
+/* ============================================================================
+ * .post-quiet — re-skins the existing dark-theme thought pages into Quiet
+ * without rewriting their inline Tailwind classes. Scoped overrides.
+ * ============================================================================ */
+.post-quiet {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Backgrounds — collapse the dark surfaces to paper / surface */
+.post-quiet [class*="bg-gray-950"] { background: transparent !important; }
+.post-quiet [class*="bg-gray-900"] { background: var(--color-surface) !important; }
+.post-quiet [class*="bg-gray-800"] { background: var(--color-paper-2) !important; }
+.post-quiet [class*="bg-blue-9"],
+.post-quiet [class*="bg-purple-9"],
+.post-quiet [class*="bg-pink-9"],
+.post-quiet [class*="bg-orange-9"],
+.post-quiet [class*="bg-green-9"],
+.post-quiet [class*="bg-yellow-9"],
+.post-quiet [class*="bg-red-9"],
+.post-quiet [class*="bg-cyan-9"] { background: var(--color-paper-2) !important; }
+.post-quiet [class*="bg-blue-6"],
+.post-quiet [class*="bg-purple-6"],
+.post-quiet [class*="bg-pink-6"],
+.post-quiet [class*="bg-orange-6"],
+.post-quiet [class*="bg-green-6"],
+.post-quiet [class*="bg-yellow-6"],
+.post-quiet [class*="bg-red-6"] { background: var(--color-ink) !important; color: var(--color-paper) !important; }
+
+/* Text — neutralize dark-theme grays + decorative colors */
+.post-quiet [class*="text-gray-100"],
+.post-quiet [class*="text-gray-200"],
+.post-quiet [class*="text-white"] { color: var(--color-ink) !important; }
+.post-quiet [class*="text-gray-300"],
+.post-quiet [class*="text-gray-400"] { color: var(--color-ink-soft) !important; }
+.post-quiet [class*="text-gray-500"],
+.post-quiet [class*="text-gray-600"] { color: var(--color-ink-quiet) !important; }
+
+/* Tame the decorative chroma — let the accent show through on links + chips */
+.post-quiet [class*="text-blue-3"],
+.post-quiet [class*="text-blue-4"],
+.post-quiet [class*="text-pink-3"],
+.post-quiet [class*="text-pink-4"],
+.post-quiet [class*="text-purple-3"],
+.post-quiet [class*="text-purple-4"],
+.post-quiet [class*="text-orange-3"],
+.post-quiet [class*="text-orange-4"],
+.post-quiet [class*="text-yellow-3"],
+.post-quiet [class*="text-yellow-4"],
+.post-quiet [class*="text-green-3"],
+.post-quiet [class*="text-green-4"],
+.post-quiet [class*="text-red-3"],
+.post-quiet [class*="text-red-4"],
+.post-quiet [class*="text-cyan-3"],
+.post-quiet [class*="text-cyan-4"] { color: var(--color-accent) !important; }
+
+/* Borders */
+.post-quiet [class*="border-gray-"],
+.post-quiet [class*="border-blue-"],
+.post-quiet [class*="border-pink-"],
+.post-quiet [class*="border-purple-"],
+.post-quiet [class*="border-orange-"],
+.post-quiet [class*="border-yellow-"],
+.post-quiet [class*="border-green-"],
+.post-quiet [class*="border-red-"],
+.post-quiet [class*="border-cyan-"] { border-color: var(--color-rule) !important; }
+
+/* Code blocks + inline code */
+.post-quiet code,
+.post-quiet pre {
+  background: var(--color-paper-2) !important;
+  color: var(--color-ink) !important;
+  border-color: var(--color-rule) !important;
+}
+
+/* "Case Study" chip — keep the existing chip shape, restyle */
+.post-quiet .inline-block.text-xs.font-semibold.uppercase {
+  background: transparent !important;
+  border: 1px solid var(--color-rule) !important;
+  color: var(--color-ink-quiet) !important;
+}
+
+/* Prose plugin overrides — when posts use `prose prose-invert` */
+.post-quiet .prose,
+.post-quiet .prose-invert {
+  color: var(--color-ink-soft);
+}
+.post-quiet .prose strong,
+.post-quiet .prose-invert strong { color: var(--color-ink); }
+.post-quiet .prose a,
+.post-quiet .prose-invert a { color: var(--color-accent); }
+.post-quiet .prose h1, .post-quiet .prose h2, .post-quiet .prose h3, .post-quiet .prose h4,
+.post-quiet .prose-invert h1, .post-quiet .prose-invert h2, .post-quiet .prose-invert h3, .post-quiet .prose-invert h4 {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+.post-quiet .prose code, .post-quiet .prose-invert code {
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+/* Hero h1 inside posts */
+.post-quiet h1[class*="text-4xl"],
+.post-quiet h1[class*="text-5xl"] {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
 /* drop-cap helper for case study intro */
 .dropcap::first-letter {
   font-family: var(--font-display);
