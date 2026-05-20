@@ -9,16 +9,13 @@ import HeadlessVsMonolithic from './pages/HeadlessVsMonolithic';
 import WordPressGutenberg from './pages/WordPressGutenberg';
 import CICD from './pages/CICD';
 import WPEFaustJS from './pages/WPEFaustJS';
-import CropAide from './pages/CropAide';
-import MILES from './pages/MILES';
+import { CaseStudyPage } from './case-studies.jsx';
 import LaravelRBAC from './pages/LaravelRBAC';
 import LaravelCloud from './pages/LaravelCloud';
 import LaravelReverb from './pages/LaravelReverb';
 import ZustandMILES from './pages/ZustandMILES';
-import CaliforniaClosets from './pages/CaliforniaClosets';
 import RollupComponents from './pages/RollupComponents';
 import GeminiPortfolioAssistant from './pages/GeminiPortfolioAssistant';
-import ProjectAire from './pages/ProjectAire';
 import RealtimeChat from './pages/RealtimeChat';
 import ApryseWebViewer from './pages/ApryseWebViewer';
 
@@ -587,14 +584,11 @@ const AppContent = () => {
             <Route path="/thoughts/wordpress-gutenberg" element={<WordPressGutenberg />} />
             <Route path="/thoughts/ci-cd" element={<CICD />} />
             <Route path="/thoughts/wpe-faustjs-atlas" element={<WPEFaustJS />} />
-            <Route path="/case-studies/cropaide" element={<CropAide />} />
-            <Route path="/case-studies/miles" element={<MILES />} />
+            <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
             <Route path="/thoughts/laravel-rbac" element={<LaravelRBAC />} />
             <Route path="/thoughts/laravel-cloud" element={<LaravelCloud />} />
             <Route path="/thoughts/laravel-reverb" element={<LaravelReverb />} />
             <Route path="/thoughts/zustand-miles" element={<ZustandMILES />} />
-            <Route path="/case-studies/california-closets" element={<CaliforniaClosets />} />
-            <Route path="/case-studies/projectaire" element={<ProjectAire />} />
             <Route path="/thoughts/rollup-gutenberg-components" element={<RollupComponents />} />
             <Route path="/thoughts/gemini-portfolio-assistant" element={<GeminiPortfolioAssistant />} />
             <Route path="/thoughts/realtime-chat-laravel" element={<RealtimeChat />} />
