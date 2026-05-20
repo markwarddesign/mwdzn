@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 const ZustandMILES = () => {
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 font-sans">
-      <main className="flex-1 pt-24">
+    <div className="post-quiet min-h-screen bg-paper text-ink font-sans pt-14">
+      <main className="flex-1 pt-8">
         <article className="max-w-4xl mx-auto py-12 px-6">
 
           {/* Header */}

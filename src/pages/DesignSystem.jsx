@@ -4,8 +4,8 @@ import { SiStorybook, SiFigma, SiReact } from 'react-icons/si';
 
 const DesignSystem = () => {
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 font-sans">
-      <main className="flex-1 pt-24">
+    <div className="post-quiet min-h-screen bg-paper text-ink font-sans pt-14">
+      <main className="flex-1 pt-8">
         <article className="max-w-4xl mx-auto py-12 px-6">
           <div className="flex items-center gap-4 mb-4">
             <div className="mb-4">
