@@ -345,6 +345,40 @@ html.lenis, html.lenis body { height: auto; }
   letter-spacing: -0.035em;
 }
 
+/* ============================================================================
+ * Kill decorative icons inside posts — the colorful Fi*/Si* svgs in every
+ * h2, every stack chip, every callout. The classic AI-portfolio fingerprint.
+ * ============================================================================ */
+
+/* Any icon inside a heading is decorative */
+.post-quiet h1 svg,
+.post-quiet h2 svg,
+.post-quiet h3 svg,
+.post-quiet h4 svg { display: none !important; }
+
+/* Any svg that has an explicit chromatic text-color class is decorative */
+.post-quiet svg[class*="text-blue-"],
+.post-quiet svg[class*="text-pink-"],
+.post-quiet svg[class*="text-purple-"],
+.post-quiet svg[class*="text-orange-"],
+.post-quiet svg[class*="text-yellow-"],
+.post-quiet svg[class*="text-green-"],
+.post-quiet svg[class*="text-red-"],
+.post-quiet svg[class*="text-cyan-"],
+.post-quiet svg[class*="text-indigo-"] { display: none !important; }
+
+/* When a heading had a leading icon + gap-2, removing the icon leaves an
+ * empty flex slot — collapse the gap on those layouts */
+.post-quiet h1.flex,
+.post-quiet h2.flex,
+.post-quiet h3.flex,
+.post-quiet h4.flex { gap: 0 !important; }
+
+/* Stack chip rows lose their icons; tighten the surviving labels */
+.post-quiet [class*="bg-gray-9"][class*="rounded-xl"] > span[class*="flex items-center"] {
+  gap: 0 !important;
+}
+
 /* drop-cap helper for case study intro */
 .dropcap::first-letter {
   font-family: var(--font-display);
