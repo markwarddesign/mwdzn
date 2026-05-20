@@ -202,7 +202,65 @@ html.lenis, html.lenis body { height: auto; }
 .post-quiet [class*="bg-orange-6"],
 .post-quiet [class*="bg-green-6"],
 .post-quiet [class*="bg-yellow-6"],
-.post-quiet [class*="bg-red-6"] { background: var(--color-ink) !important; color: var(--color-paper) !important; }
+.post-quiet [class*="bg-red-6"],
+.post-quiet [class*="bg-blue-7"],
+.post-quiet [class*="bg-purple-7"],
+.post-quiet [class*="bg-orange-7"],
+.post-quiet [class*="bg-green-7"],
+.post-quiet [class*="bg-red-7"] { background: var(--color-ink) !important; color: var(--color-paper) !important; }
+
+/* Buttons / pills — force paper text when the element has BOTH a colored
+ * background utility AND a light text utility (text-white, text-gray-100, etc).
+ * This must come AFTER the gray neutralization above so it wins on cascade. */
+.post-quiet a[class*="bg-blue-"][class*="text-white"],
+.post-quiet a[class*="bg-purple-"][class*="text-white"],
+.post-quiet a[class*="bg-pink-"][class*="text-white"],
+.post-quiet a[class*="bg-orange-"][class*="text-white"],
+.post-quiet a[class*="bg-green-"][class*="text-white"],
+.post-quiet a[class*="bg-yellow-"][class*="text-white"],
+.post-quiet a[class*="bg-red-"][class*="text-white"],
+.post-quiet a[class*="bg-indigo-"][class*="text-white"],
+.post-quiet button[class*="bg-blue-"][class*="text-white"],
+.post-quiet button[class*="bg-purple-"][class*="text-white"],
+.post-quiet button[class*="bg-orange-"][class*="text-white"],
+.post-quiet button[class*="bg-green-"][class*="text-white"],
+.post-quiet button[class*="bg-red-"][class*="text-white"] {
+  background: var(--color-ink) !important;
+  color: var(--color-paper) !important;
+  border-color: var(--color-ink) !important;
+}
+.post-quiet a[class*="bg-blue-"][class*="text-white"]:hover,
+.post-quiet a[class*="bg-purple-"][class*="text-white"]:hover,
+.post-quiet a[class*="bg-pink-"][class*="text-white"]:hover,
+.post-quiet a[class*="bg-orange-"][class*="text-white"]:hover,
+.post-quiet a[class*="bg-green-"][class*="text-white"]:hover,
+.post-quiet a[class*="bg-red-"][class*="text-white"]:hover,
+.post-quiet button[class*="bg-blue-"][class*="text-white"]:hover,
+.post-quiet button[class*="bg-purple-"][class*="text-white"]:hover {
+  background: var(--color-accent) !important;
+  color: var(--color-paper) !important;
+}
+
+/* Outlined / bordered link-buttons (border-X-600 + text-X-400) — turn into
+ * Quiet ghost buttons */
+.post-quiet a[class*="border-blue-"][class*="text-blue-"],
+.post-quiet a[class*="border-purple-"][class*="text-purple-"],
+.post-quiet a[class*="border-orange-"][class*="text-orange-"],
+.post-quiet a[class*="border-green-"][class*="text-green-"],
+.post-quiet a[class*="border-red-"][class*="text-red-"] {
+  background: transparent !important;
+  color: var(--color-ink) !important;
+  border-color: var(--color-rule-strong) !important;
+}
+.post-quiet a[class*="border-blue-"][class*="text-blue-"]:hover,
+.post-quiet a[class*="border-purple-"][class*="text-purple-"]:hover,
+.post-quiet a[class*="border-orange-"][class*="text-orange-"]:hover,
+.post-quiet a[class*="border-green-"][class*="text-green-"]:hover,
+.post-quiet a[class*="border-red-"][class*="text-red-"]:hover {
+  background: var(--color-ink) !important;
+  color: var(--color-paper) !important;
+  border-color: var(--color-ink) !important;
+}
 
 /* Text — neutralize dark-theme grays + decorative colors */
 .post-quiet [class*="text-gray-100"],
