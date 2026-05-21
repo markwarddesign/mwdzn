@@ -244,13 +244,35 @@ const ChatDrawer = ({ open, onClose }) => {
         }),
       });
       if (!res.ok) throw new Error(`API ${res.status}`);
-      const data = await res.json();
-      const replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'No response.';
-      setMessages((m) => {
-        const u = [...m];
-        u[u.length - 1] = { role: 'model', text: replyText };
-        return u;
-      });
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let replyText = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+        for (const line of lines) {
+          if (!line.startsWith('data:')) continue;
+          const payload = line.slice(5).trim();
+          if (!payload) continue;
+          try {
+            const json = JSON.parse(payload);
+            const chunk = json?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (chunk) {
+              replyText += chunk;
+              setMessages((m) => {
+                const u = [...m];
+                u[u.length - 1] = { role: 'model', text: replyText };
+                return u;
+              });
+            }
+          } catch {}
+        }
+      }
+      if (!replyText) replyText = 'No response.';
       setHistory([...nextHistory, { role: 'model', parts: [{ text: replyText }] }]);
     } catch (err) {
       setMessages((m) => {
