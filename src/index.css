@@ -379,6 +379,34 @@ html.lenis, html.lenis body { height: auto; }
   gap: 0 !important;
 }
 
+/* ============================================================================
+ * Print styles for the /cv page — produces a clean PDF via the browser's
+ * "Save as PDF" dialog. Hides nav, footer, and the in-page action buttons.
+ * ============================================================================ */
+@media print {
+  @page { margin: 14mm 12mm; }
+
+  html, body { background: #fff !important; }
+  body * { color: #111 !important; }
+
+  /* Hide site chrome and any interactive controls on the CV page */
+  nav, header[role="banner"], footer,
+  .cv-page .cv-actions { display: none !important; }
+
+  .cv-page { padding-top: 0 !important; }
+  .cv-page .tile {
+    border: 1px solid #d4d4d0 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  .cv-page section { break-inside: avoid; }
+  .cv-page a { text-decoration: none !important; color: #111 !important; }
+  .cv-page .meta { color: #555 !important; }
+
+  /* Reveal animations off */
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
 /* drop-cap helper for case study intro */
 .dropcap::first-letter {
   font-family: var(--font-display);

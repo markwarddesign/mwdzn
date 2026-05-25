@@ -21,7 +21,7 @@ const LaravelRBAC = () => {
 
           {/* Meta */}
           <div className="flex flex-wrap items-center gap-4 mb-6 text-gray-400 text-sm">
-            <span>By <strong className="text-gray-200">Mark Ward</strong> &middot; Lead WordPress Engineer &amp; Full Stack Architect</span>
+            <span>By <strong className="text-gray-200">Mark Ward</strong> &middot; Lead Software Engineer &amp; Full-Stack Architect</span>
           </div>
           <div className="flex flex-wrap items-center gap-3 mb-10">
             <span className="flex items-center gap-1.5 text-sm text-gray-400"><SiLaravel className="text-red-400" size={16} /> Laravel 11</span>

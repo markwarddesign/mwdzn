@@ -19,6 +19,7 @@ import RollupComponents from './pages/RollupComponents';
 import GeminiPortfolioAssistant from './pages/GeminiPortfolioAssistant';
 import RealtimeChat from './pages/RealtimeChat';
 import ApryseWebViewer from './pages/ApryseWebViewer';
+import CV from './pages/CV';
 
 /* ---------- smooth scroll ---------- */
 
@@ -666,10 +667,10 @@ const About = () => (
             projects quietly start to go sideways.
           </p>
           <p>
-            In fifteen years I haven't missed a committed launch date. Not because I'm a hero,
-            but because I've learned to refuse the version of a project that would force me to.
-            Scope, quality, and the date — you get two, and the third one calls the others' bluff.
-            I'm comfortable saying "not this sprint" out loud and in writing.
+            Scope, quality, and the date — you get two, and the third one calls the others'
+            bluff. Most of the value I add as a lead isn't writing more code; it's refusing the
+            version of a project that pretends those three are independent. I'm comfortable
+            saying "not this sprint" out loud and in writing, early enough for it to matter.
           </p>
           <p>
             Outside of work I'm a dad to three daughters, a high school basketball coach, and
@@ -740,6 +741,7 @@ const Footer = () => (
         © {new Date().getFullYear()} Mark Ward. Hand-built. Set in Fraunces &amp; Inter Tight.
       </div>
       <div className="flex items-center gap-5">
+        <Link to="/cv" className="text-[13.5px] text-ink-quiet hover:text-ink transition-colors">CV</Link>
         <a href="https://github.com/markwarddesign"      aria-label="GitHub"   className="text-ink-quiet hover:text-ink transition-colors"><FiGithub size={17} /></a>
         <a href="https://linkedin.com/in/markwarddesign" aria-label="LinkedIn" className="text-ink-quiet hover:text-ink transition-colors"><FiLinkedin size={17} /></a>
         <a href="mailto:mark@markwarddesign.com"         aria-label="Email"    className="text-ink-quiet hover:text-ink transition-colors"><FiMail size={17} /></a>
@@ -815,6 +817,7 @@ const AppContent = () => {
             <Route path="/thoughts/gemini-portfolio-assistant" element={<GeminiPortfolioAssistant />} />
             <Route path="/thoughts/realtime-chat-laravel" element={<RealtimeChat />} />
             <Route path="/thoughts/apryse-webviewer" element={<ApryseWebViewer />} />
+            <Route path="/cv" element={<CV />} />
           </Routes>
         </main>
         <Footer />
