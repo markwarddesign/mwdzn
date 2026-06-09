@@ -20,6 +20,8 @@ import GeminiPortfolioAssistant from './pages/GeminiPortfolioAssistant';
 import RealtimeChat from './pages/RealtimeChat';
 import ApryseWebViewer from './pages/ApryseWebViewer';
 import CV from './pages/CV';
+import Banners from './pages/Banners';
+import PdfMicroservice from './pages/PdfMicroservice';
 
 /* ---------- smooth scroll ---------- */
 
@@ -609,6 +611,7 @@ const POSTS = [
   { cat: 'Frontend',     title: 'Why We Chose Zustand Over Redux for a Real-Time Automotive SaaS',         excerpt: 'Predictable state flow, surgical re-renders, real-time without complexity. Why MILES uses Zustand instead of Redux or React Query.', href: '/thoughts/zustand-miles' },
   { cat: 'Frontend',     title: 'Mastering the Block: Modern WordPress with Gutenberg',                   excerpt: 'How Gutenberg actually works under the hood, and how to build custom blocks editors will use without complaining.', href: '/thoughts/wordpress-gutenberg' },
   { cat: 'Infra',        title: 'Why I Chose Laravel Cloud Over AWS for a Production SaaS',               excerpt: 'Laravel Cloud vs. rolling your own AWS stack — total cost of ownership, ops budget, and the tradeoffs that matter at small team scale.', href: '/thoughts/laravel-cloud' },
+  { cat: 'Infra',        title: 'When the Platform Won\'t Let You Install a Binary: A PDF-Splitting Microservice for Serverless Laravel', excerpt: 'Laravel Cloud forbids system binaries, so I moved qpdf and poppler into a tiny Cloud Run container behind a POST /process contract — plus the Google org-policy fights that nearly blocked it.', href: '/thoughts/pdf-microservice' },
   { cat: 'Infra',        title: 'The Power of the Pipeline: CI/CD for Modern Web Development',            excerpt: 'GitHub Actions, branch previews, automated tests, and the build pipeline that lets a team of seven engineers ship without stepping on each other.', href: '/thoughts/ci-cd' },
   { cat: 'Practice',     title: 'The Unseen Value of a Design System',                                    excerpt: 'A design system is not the icon library. It\'s the contract between designers and engineers that lets a team ship a hundred pages without arguing about button padding.', href: '/thoughts/design-system' },
   { cat: 'AI',           title: 'Building a Secure AI Assistant Into a Static Portfolio Site',            excerpt: 'How the Gemini-powered chat on this portfolio works — Cloudflare Workers as the API key broker, SSE streaming back to the browser, knowledge base in code.', href: '/thoughts/gemini-portfolio-assistant' },
@@ -817,7 +820,9 @@ const AppContent = () => {
             <Route path="/thoughts/gemini-portfolio-assistant" element={<GeminiPortfolioAssistant />} />
             <Route path="/thoughts/realtime-chat-laravel" element={<RealtimeChat />} />
             <Route path="/thoughts/apryse-webviewer" element={<ApryseWebViewer />} />
+            <Route path="/thoughts/pdf-microservice" element={<PdfMicroservice />} />
             <Route path="/cv" element={<CV />} />
+            <Route path="/banners" element={<Banners />} />
           </Routes>
         </main>
         <Footer />
