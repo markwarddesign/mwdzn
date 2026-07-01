@@ -29,6 +29,13 @@ const TerminalAI = () => {
     setInput('');
     setIsTyping(true);
 
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'sherman_terminal_question', {
+        event_category: 'Sherman Application',
+        message_preview: userMsg.slice(0, 100),
+      });
+    }
+
     const workerUrl = import.meta.env.VITE_GEMINI_WORKER_URL;
     if (!workerUrl) {
       setMessages(prev => {
@@ -162,6 +169,36 @@ const TerminalAI = () => {
 };
 
 const ShermanApplication = () => {
+  // Track the open: GA4 event + a real-time email beacon (once per session,
+  // production only so local testing doesn't spam the inbox).
+  useEffect(() => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'sherman_view', { event_category: 'Sherman Application' });
+    }
+
+    try {
+      if (sessionStorage.getItem('sherman_notified')) return;
+      sessionStorage.setItem('sherman_notified', '1');
+
+      const base = import.meta.env.VITE_GEMINI_WORKER_URL;
+      const isLocal = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
+      if (!base || isLocal) return;
+
+      fetch(base.replace(/\/$/, '') + '/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'page_open',
+          page: '/sherman',
+          referrer: document.referrer || 'direct',
+          userAgent: navigator.userAgent,
+          time: new Date().toISOString(),
+        }),
+        keepalive: true,
+      }).catch(() => {});
+    } catch {}
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-300 font-mono px-6 sm:px-12 md:px-20 pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20 flex justify-center selection:bg-blue-500 selection:text-white">
       <div className="max-w-3xl w-full">
@@ -232,6 +269,7 @@ const ShermanApplication = () => {
             href="/Mark_Ward_Resume_Sherman_Research.pdf"
             className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-black bg-white rounded hover:bg-gray-200 transition-all active:scale-95"
             download
+            onClick={() => window.gtag?.('event', 'sherman_resume_download', { event_category: 'Sherman Application' })}
           >
             <svg
               className="w-5 h-5 group-hover:translate-y-0.5 transition-transform"
