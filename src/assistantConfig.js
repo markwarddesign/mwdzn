@@ -8,7 +8,7 @@ export const profile = {
 
   // --- BASICS ---
   name: 'Mark Ward',
-  title: 'Lead Software Engineer & Full-Stack Architect',
+  title: 'Digital Architect & Lead Engineer',
   location: 'Twin Falls, Idaho (Remote-first)',
   email: 'mark@markwarddesign.com',
   linkedin: 'https://linkedin.com/in/markwarddesign',
@@ -109,8 +109,22 @@ export const profile = {
     {
       title: 'MILES — automotive desking logic at scale',
       body: `Architected M.I.L.E.S., the multi-tenant automotive SaaS at Dealer Transparency —
-        complex PostgreSQL data modeling, secure routing, real-time WebSocket pipelines, and
-        the "desking" logic that handles high-volume dealership operations.`,
+        a real-time offer engine that replaces phoning a manager to confirm a number. Penny-accurate
+        financial calculations via the Strategy pattern, WebSocket sync on Laravel Reverb, complex
+        MySQL data modeling, and secure multi-dealer routing at high volume.`,
+    },
+    {
+      title: 'Serverless-safe PDF pipeline on Cloud Run',
+      body: `Laravel Cloud forbids installing system binaries, so when a product needed to split and
+        process PDFs, Mark moved qpdf and poppler into a tiny Google Cloud Run container behind a
+        clean POST /process contract — keeping the Laravel app serverless while still getting native
+        tooling. Included winning a round of Google org-policy fights that nearly blocked the deploy.`,
+    },
+    {
+      title: 'Secure AI assistant on Cloudflare Workers',
+      body: `Built the Gemini-powered assistant on this portfolio: a Cloudflare Worker acts as the
+        API-key broker so the key never touches the browser, responses stream back over SSE, and the
+        knowledge base lives in code. A static site that talks — without a backend to maintain.`,
     },
     {
       title: 'TDD culture flip at Empowered Education',
@@ -130,7 +144,7 @@ export const profile = {
         2–10+ engineers while remaining a heavy individual contributor. Primary technical lead
         for decoupled architectures — Next.js, React, TypeScript on the front; PHP, Node, and
         GraphQL APIs on the back. Led the headless rebuild of California Closets (Next.js,
-        TypeScript, GraphQL, Algolia, Salesforce, Contentful), launched September 2025, with
+        TypeScript, GraphQL, Algolia, Salesforce, headless WordPress backend), launched September 2025, with
         sub-second load times and peak Core Web Vitals. Designed and maintained shared
         component libraries that drove cross-runtime consistency across multiple CMS targets.
         Championed agentic AI tooling (Claude Code, Cursor) across the engineering org,
@@ -141,9 +155,11 @@ export const profile = {
       company: 'Dealer Transparency',
       role: 'Co-Founder, Lead Developer & Technical Architect',
       dates: '2023 – Present',
-      summary: `Co-founded and led architecture of the MILES platform — an enterprise real-time
-        vehicle tracking SaaS. Designed WebSocket data pipelines, automated third-party API syncs,
-        and Zustand-based state management. Built for multi-dealer tenancy at scale.`,
+      summary: `Co-founded and led architecture of the MILES platform — a real-time offer engine
+        for automotive dealers that replaces phoning a manager to confirm a number. Designed
+        WebSocket sync on Laravel Reverb, penny-accurate desking calculations via the Strategy
+        pattern, automated third-party API syncs, and Zustand-based state management on MySQL.
+        Built for multi-dealer tenancy at scale; live across 5 dealerships at 99.9% uptime.`,
     },
     {
       company: 'CropAide (Co-Founder)',
@@ -193,9 +209,9 @@ export const profile = {
   // --- SKILLS ---
   skills: {
     frontend: ['React', 'Next.js', 'Astro', 'TypeScript', 'JavaScript (ES6+)', 'Redux', 'Zustand', 'Tailwind CSS', 'Bootstrap', 'Framer Motion', 'HTML5', 'CSS3', 'Microfrontend concepts'],
-    backend: ['Laravel', 'PHP 8.x', 'Node.js', 'GraphQL', 'REST APIs', 'MySQL', 'PostgreSQL', 'OOP / MVC'],
+    backend: ['Laravel', 'PHP 8.x', 'Node.js', 'GraphQL', 'REST APIs', 'MySQL', 'PostgreSQL', 'OOP / MVC', 'Laravel Reverb (WebSockets)', 'Server-Sent Events (SSE)'],
     cms: ['WordPress', 'Custom Gutenberg blocks', 'Storyblok', 'Contentful', 'Headless CMS architecture'],
-    devops: ['GitHub Actions', 'CI/CD', 'Docker', 'AWS', 'Vercel', 'WP Engine Atlas', 'Cloudflare', 'Laravel Forge', 'Laravel Cloud', 'Laravel Pulse'],
+    devops: ['GitHub Actions', 'CI/CD', 'Docker', 'AWS', 'Google Cloud Run', 'Vercel', 'WP Engine Atlas', 'Cloudflare', 'Cloudflare Workers', 'Laravel Forge', 'Laravel Cloud', 'Laravel Pulse'],
     testing: ['Jest', 'Nightwatch (E2E)', 'TDD', 'Automated testing workflows', 'Code review'],
     architecture: ['Multi-tenant SaaS', 'Headless CMS', 'Decoupled SPAs', 'Microservices', 'Polymorphic schemas', 'WebSockets', 'Stripe billing', 'Row-level security', 'Schema design'],
     workflow: ['Claude Code', 'Cursor', 'GitHub Copilot', 'Git', 'Jira', 'Figma', 'Agile / Sprint planning', 'Storybook'],
@@ -222,9 +238,9 @@ export const profile = {
     {
       name: 'California Closets',
       url: 'https://www.californiaclosets.com',
-      stack: 'Next.js, React, GraphQL, Algolia, Salesforce, WP Engine Atlas',
+      stack: 'Next.js, React, GraphQL, Algolia, Salesforce, headless WordPress backend',
       role: 'Technical Architect & Dev Lead',
-      highlights: 'Led 3-engineer team. 200+ Storybook components. Full CI/CD. ADA compliant. Launched Sept 2025.',
+      highlights: 'Led a team of up to 7 engineers. 200+ Storybook components. Full CI/CD with branch previews. Multilingual (EN + ES). ADA compliant. Launched Sept 2025.',
     },
     {
       name: 'CropAide',
@@ -237,15 +253,16 @@ export const profile = {
     {
       name: 'Dealer Transparency MILES',
       url: 'https://miles.dealertransparency.com',
-      stack: 'Laravel, React, Zustand, WebSockets, PostgreSQL',
+      stack: 'Laravel 12, React 18, TypeScript, Laravel Reverb, Zustand, MySQL',
       role: 'Co-Founder, Lead Developer & Technical Architect',
-      highlights: 'Real-time vehicle tracking. Automated third-party API syncs. Complex desking logic, secure data routing, multi-dealer tenancy at scale.',
+      highlights: 'Real-time offer engine for auto dealers. WebSocket sync on Reverb, penny-accurate desking via the Strategy pattern, automated third-party API syncs. Live across 5 dealerships at 99.9% uptime.',
     },
     {
       name: 'ProjectAire',
-      stack: 'React, TypeScript, Laravel, MySQL',
+      url: 'https://projectaire.app',
+      stack: 'React, TypeScript, Laravel, Apryse WebViewer, Reverb, MySQL, Stripe',
       role: 'Lead Architect & Full Stack Engineer',
-      highlights: 'End-to-end project management platform for construction teams. Decoupled SPA with state-driven UI and real-time project tracking.',
+      highlights: 'Construction project-management SaaS. Multi-user PDF annotation sync (Apryse WebViewer, XFDF over Reverb), middleware-gated pricing tiers, metrics pre-aggregated on write.',
     },
   ],
 

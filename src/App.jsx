@@ -22,6 +22,7 @@ import ApryseWebViewer from './pages/ApryseWebViewer';
 import CV from './pages/CV';
 import Banners from './pages/Banners';
 import PdfMicroservice from './pages/PdfMicroservice';
+import ShermanApplication from './pages/ShermanApplication';
 
 /* ---------- smooth scroll ---------- */
 
@@ -823,6 +824,8 @@ const AppContent = () => {
             <Route path="/thoughts/pdf-microservice" element={<PdfMicroservice />} />
             <Route path="/cv" element={<CV />} />
             <Route path="/banners" element={<Banners />} />
+            {/* Hidden — not linked from nav/footer. Job application for Sherman Research. */}
+            <Route path="/sherman" element={<ShermanApplication />} />
           </Routes>
         </main>
         <Footer />
