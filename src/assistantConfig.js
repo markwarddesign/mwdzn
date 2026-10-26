@@ -14,7 +14,7 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/markwarddesign',
   github: 'https://github.com/markwarddesign',
   yearsOfExperience: 15,
-  openToWork: true,
+  openToWork: false,
   targetRoles: [
     'Senior Full-Stack Engineer',
     'Lead Engineer',
@@ -137,9 +137,33 @@ export const profile = {
   // --- CURRENT & PAST ROLES ---
   experience: [
     {
+      company: 'Elevate Digital',
+      role: 'Technical Engagement Lead',
+      dates: 'Jun 2026 – Present',
+      summary: `Senior technical lead on client engagements, running the web entities for
+        Primo Brands. The bridge between client stakeholders and engineering teams: owns the
+        technical health of the work, turns business goals into clear technical direction, and
+        keeps delivery on track. Senior technical point of contact and trusted advisor for
+        client partners. Drives scoping, estimation, technical planning, and delivery cadence
+        across multiple workstreams; surfaces risk early and steers teams toward pragmatic,
+        high-quality solutions. Leads features end to end, sets the quality bar, mentors
+        engineers, and contributes to cross-team engineering standards.`,
+    },
+    {
+      company: 'ProjectAire',
+      role: 'Co-Founder & CTO',
+      dates: 'Oct 2025 – Present',
+      summary: `Co-founded ProjectAire, construction management software for general contractors,
+        architects, and owners, with a focus on project closeout. As CTO, designs and builds the
+        product end to end: architecture, UI, data model, billing, and an in-app AI assistant.
+        Multi-user PDF annotation sync (Apryse WebViewer, XFDF over Laravel Reverb),
+        middleware-gated pricing tiers, and metrics pre-aggregated on write. Laravel, React,
+        TypeScript, PostgreSQL, Stripe, Claude API.`,
+    },
+    {
       company: 'Third & Grove',
       role: 'Lead Software Engineer',
-      dates: 'Sept 2022 – Present',
+      dates: 'Jul 2022 – Jun 2026',
       summary: `Top-tier enterprise digital agency. Player-coach managing distributed teams of
         2–10+ engineers while remaining a heavy individual contributor. Primary technical lead
         for decoupled architectures — Next.js, React, TypeScript on the front; PHP, Node, and
@@ -260,8 +284,8 @@ export const profile = {
     {
       name: 'ProjectAire',
       url: 'https://projectaire.app',
-      stack: 'React, TypeScript, Laravel, Apryse WebViewer, Reverb, MySQL, Stripe',
-      role: 'Lead Architect & Full Stack Engineer',
+      stack: 'React, TypeScript, Laravel, Apryse WebViewer, Reverb, PostgreSQL, Stripe',
+      role: 'Co-Founder & CTO',
       highlights: 'Construction project-management SaaS. Multi-user PDF annotation sync (Apryse WebViewer, XFDF over Reverb), middleware-gated pricing tiers, metrics pre-aggregated on write.',
     },
   ],

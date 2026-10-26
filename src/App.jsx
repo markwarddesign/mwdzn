@@ -382,14 +382,14 @@ const Hero = () => {
         <Reveal as="div" className="lg:col-span-8">
           <div className="flex items-center gap-3 mb-7">
             <span className="status-dot" aria-hidden="true" />
-            <span className="meta text-ink">Open to Senior / Lead roles — May 2026</span>
+            <span className="meta text-ink">Technical Engagement Lead · Elevate Digital</span>
           </div>
           <h1 className="font-display font-semibold tracking-tighter3 text-ink text-[clamp(2.75rem,7vw,5.75rem)] leading-[0.98]">
             Mark Ward
           </h1>
           <p className="mt-6 text-[clamp(1.125rem,1.5vw,1.375rem)] leading-[1.5] text-ink-soft measure">
-            I lead engineering at <a href="https://thirdandgrove.com" target="_blank" rel="noreferrer" className="prose-link">Third &amp; Grove</a>,
-            and I co-founded three SaaS products (CropAide, MILES, ProjectAire). Fifteen years of
+            I'm a Technical Engagement Lead at <a href="https://elevate-digital.com" target="_blank" rel="noreferrer" className="prose-link">Elevate Digital</a>,
+            where I run the Primo Brands web properties, and I co-founded three SaaS products (CropAide, MILES, ProjectAire). Fifteen years of
             production work — Laravel, React, Next.js — and a clear sense of what matters and what's just noise.
           </p>
         </Reveal>
@@ -494,13 +494,13 @@ const WORK = [
     id: 'aire',
     name: 'ProjectAire',
     mark: 'PA',
-    role: 'Co-founder & lead engineer',
+    role: 'Co-founder & CTO',
     date: 'Live',
     metric: { k: 'XFDF', v: 'multi-user annotation sync' },
     live: 'https://projectaire.app',
     study: '/case-studies/projectaire',
     body: 'Construction project management SaaS. The hard part was an Apryse WebViewer integration with multi-user PDF annotation sync over Reverb — three weeks of XFDF wrangling. Pricing tiers gated through middleware; metrics pre-aggregated on write because the dashboard is the product.',
-    tags: ['Laravel', 'React', 'Apryse', 'MySQL', 'Stripe'],
+    tags: ['Laravel', 'React', 'Apryse', 'PostgreSQL', 'Stripe'],
   },
 ];
 
@@ -688,7 +688,7 @@ const About = () => (
             <ul className="space-y-3 text-[14.5px] text-ink-soft">
               <li className="flex items-baseline gap-3">
                 <span className="meta !text-[10px] w-16 flex-shrink-0">Role</span>
-                <span>Lead Developer · Third &amp; Grove</span>
+                <span>Technical Engagement Lead · Elevate Digital</span>
               </li>
               <li className="flex items-baseline gap-3">
                 <span className="meta !text-[10px] w-16 flex-shrink-0">Stack</span>
@@ -701,10 +701,6 @@ const About = () => (
               <li className="flex items-baseline gap-3">
                 <span className="meta !text-[10px] w-16 flex-shrink-0">Location</span>
                 <span>Twin Falls, Idaho — remote-first</span>
-              </li>
-              <li className="flex items-baseline gap-3">
-                <span className="meta !text-[10px] w-16 flex-shrink-0">Open to</span>
-                <span className="inline-flex items-center gap-2"><span className="status-dot" />Senior / Lead roles</span>
               </li>
             </ul>
           </div>
@@ -720,11 +716,10 @@ const Hire = () => (
   <section className="border-t border-rule">
     <div className="max-w-[1240px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
       <Reveal as="div" className="measure">
-        <div className="meta mb-6">Hiring?</div>
+        <div className="meta mb-6">Say hello</div>
         <p className="font-display font-semibold tracking-tighter2 text-ink text-[clamp(1.85rem,3.4vw,2.75rem)] leading-[1.1]">
-          If you're hiring for a senior or lead engineering role at a product company that takes
-          its craft seriously, write me at{' '}
-          <a href="mailto:mark@markwarddesign.com?subject=Hiring%20%E2%80%94%20Mark%20Ward" className="text-accent underline decoration-accent/40 underline-offset-[6px] hover:decoration-accent transition-all">
+          Want to talk architecture, compare notes on a gnarly build, or just say hi? Write me at{' '}
+          <a href="mailto:mark@markwarddesign.com?subject=Hello%20%E2%80%94%20Mark%20Ward" className="text-accent underline decoration-accent/40 underline-offset-[6px] hover:decoration-accent transition-all">
             mark@markwarddesign.com
           </a>.
         </p>

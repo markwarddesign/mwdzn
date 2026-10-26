@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiArrowLeft, FiCheckCircle, FiCloud, FiDatabase, FiUsers, FiBarChart2, FiCode, FiLayers, FiZap } from 'react-icons/fi';
-import { SiLaravel, SiPhp, SiMysql, SiStripe, SiReact } from 'react-icons/si';
+import { SiLaravel, SiPhp, SiPostgresql, SiStripe, SiReact } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 
 const ProjectAire = () => {
@@ -19,7 +19,7 @@ const ProjectAire = () => {
           <div className="flex flex-wrap gap-3 mb-8">
             <span className="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-1.5 text-sm text-gray-300">
               <FiUsers className="text-orange-400" size={14} />
-              <strong className="text-white">Role:</strong>&nbsp;Co-Founder &amp; Lead Engineer
+              <strong className="text-white">Role:</strong>&nbsp;Co-Founder &amp; CTO
             </span>
             <span className="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-1.5 text-sm text-gray-300">
               <FiCheckCircle className="text-green-400" size={14} />
@@ -33,7 +33,7 @@ const ProjectAire = () => {
             <span className="flex items-center gap-1.5 text-sm text-gray-300"><SiLaravel className="text-red-400" size={20} title="Laravel" /> Laravel</span>
             <span className="flex items-center gap-1.5 text-sm text-gray-300"><SiPhp className="text-indigo-400" size={20} title="PHP" /> PHP 8.2</span>
             <span className="flex items-center gap-1.5 text-sm text-gray-300"><SiReact className="text-cyan-400" size={20} title="React" /> React</span>
-            <span className="flex items-center gap-1.5 text-sm text-gray-300"><SiMysql className="text-blue-400" size={20} title="MySQL" /> MySQL</span>
+            <span className="flex items-center gap-1.5 text-sm text-gray-300"><SiPostgresql className="text-blue-400" size={20} title="PostgreSQL" /> PostgreSQL</span>
             <span className="flex items-center gap-1.5 text-sm text-gray-300"><SiStripe className="text-purple-400" size={20} title="Stripe" /> Stripe</span>
           </div>
 
@@ -169,7 +169,7 @@ const ProjectAire = () => {
                   </tr>
                   <tr className="hover:bg-gray-800/50 transition-colors">
                     <td className="px-5 py-4 font-semibold text-orange-300">Database</td>
-                    <td className="px-5 py-4 text-gray-300 flex items-center gap-2"><SiMysql className="text-blue-400" size={16} /> MySQL</td>
+                    <td className="px-5 py-4 text-gray-300 flex items-center gap-2"><SiPostgresql className="text-blue-400" size={16} /> PostgreSQL</td>
                     <td className="px-5 py-4 text-gray-400">Relational integrity for the project → team → milestone → deliverable data hierarchy.</td>
                   </tr>
                   <tr className="hover:bg-gray-800/50 transition-colors">

@@ -205,7 +205,10 @@ const CV = () => {
         {/* ---------- Footer / contact ---------- */}
         <section className="border-t border-rule pt-8 lg:pt-10 space-y-3">
           <p className="text-[15px] text-ink-soft">
-            Open to {profile.targetRoles.slice(0, 3).join(', ')} roles. Write me at{' '}
+            {profile.openToWork
+              ? `Open to ${profile.targetRoles.slice(0, 3).join(', ')} roles. `
+              : ''}
+            Write me at{' '}
             <a href={`mailto:${profile.email}`} className="text-accent underline decoration-accent/40 underline-offset-[5px] hover:decoration-accent">
               {profile.email}
             </a>.
