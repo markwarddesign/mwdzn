@@ -44,7 +44,7 @@ const CropAide = () => {
               <FiCode className="text-blue-400" /> 1. Executive Summary
             </h2>
             <p>
-              CropAide is a multi-tenant SaaS platform designed to modernize agricultural field management. As the Lead Engineer, I architected a system that handles complex data ownership hierarchies (Growers vs. Advisors vs. Dealers) while delivering a mobile-optimized experience for field operations. The project demonstrates a focus on data isolation, scalable media handling, and developer tooling.
+              CropAide is a multi-tenant SaaS platform designed to modernize agricultural field management. As CTO and Principal Developer, I architected a system that handles complex data ownership hierarchies (Growers vs. Advisors vs. Dealers) while delivering a mobile-optimized experience for field operations. The project demonstrates a focus on data isolation, scalable media handling, and developer tooling.
             </p>
 
             {/* 2. The Challenge */}

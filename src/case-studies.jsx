@@ -185,7 +185,7 @@ const META = {
     name: 'CropAide',
     tagline: 'Multi-tenant agricultural SaaS',
     intro: "Modernizing agricultural field management with a multi-tenant platform that handles complex data ownership hierarchies (Growers, Advisors, Dealers) and a mobile-optimized experience for field operations.",
-    role: 'Co-founder · solo build',
+    role: 'CTO & Principal Developer',
     status: 'Public beta',
     team: 'Solo',
     metric: { k: '3', v: 'tenant role hierarchies' },
@@ -502,7 +502,7 @@ function CropAideBody() {
           { k: '∞',    v: 'horizontal media scaling' },
           { k: '100%', v: 'tenant isolation enforced' },
         ]} />
-        <Quote attribution="Mark Ward · Lead Architect, CropAide">
+        <Quote attribution="Mark Ward · CTO & Principal Developer, CropAide">
           Building CropAide wasn't just about CRUD operations. It was about mapping real-world
           agricultural relationships into a secure digital schema, and ensuring that as the database
           grows to millions of records, the permission checks remain fast and the media delivery

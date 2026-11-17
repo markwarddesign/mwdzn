@@ -186,8 +186,8 @@ export const profile = {
         Built for multi-dealer tenancy at scale; live across 5 dealerships at 99.9% uptime.`,
     },
     {
-      company: 'CropAide (Co-Founder)',
-      role: 'Co-Founder, Lead Architect & Full Stack Engineer',
+      company: 'CropAide',
+      role: 'CTO & Principal Developer',
       dates: '2023 – Present',
       summary: `Co-founded and architected a multi-tenant agricultural SaaS platform from zero
         to production. Laravel 11, PHP 8.2, MySQL, Cloudflare Images/Stream, Stripe Cashier.
@@ -271,7 +271,7 @@ export const profile = {
       url: 'https://cropaide.com',
       caseStudy: '/case-studies/cropaide',
       stack: 'Laravel 11, PHP 8.2, MySQL, Cloudflare, Stripe',
-      role: 'Co-Founder, Lead Architect & Full Stack Engineer',
+      role: 'CTO & Principal Developer',
       highlights: '100% tenant isolation, decoupled media, Stripe subscriptions, GPS field tracking, public beta.',
     },
     {

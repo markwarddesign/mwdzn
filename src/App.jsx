@@ -482,7 +482,7 @@ const WORK = [
     id: 'cropaide',
     name: 'CropAide',
     mark: 'CA',
-    role: 'Co-founder · solo build',
+    role: 'CTO & Principal Developer',
     date: 'Public beta',
     metric: { k: '3', v: 'tenant role hierarchies' },
     live: 'https://cropaide.com',
